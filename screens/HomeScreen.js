@@ -8,10 +8,10 @@ export default function HomeScreen() {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
 
-  useEffect(() => {
-    setUserName(user.displayName);
-    setProfilePic(user.photoURL);
-  }, []); //ComponentDidMount
+  // useEffect(() => {
+  //   setUserName(user.displayName);
+  //   setProfilePic(user.photoURL);
+  // }, []); //ComponentDidMount
 
   return (
     <View style={styles.container}>

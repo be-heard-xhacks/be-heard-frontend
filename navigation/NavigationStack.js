@@ -5,22 +5,22 @@ import HomeStack from "./HomeStack";
 import AuthStack from "./AuthStack";
 import { AuthContext } from "./AuthProvider";
 import { ActivityIndicator } from "react-native";
-import firebase from "firebase";
+// import firebase from "firebase";
 
 export default function NavigationStack() {
   const { user, setUser } = useContext(AuthContext);
   const [initializing, setInitializing] = useState(true);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // useState(true) after we set up user state change handler
 
   //handle user state changes
-  useEffect(() => {
-    const subscriber = firebase.auth().onAuthStateChanged(function (user) {
-      setUser(user);
-      if (initializing) setInitializing(false);
-      setLoading(false);
-    });
-    return subscriber; // unsubscribe on unmount
-  }, []);
+  // useEffect(() => {
+  //   const subscriber = firebase.auth().onAuthStateChanged(function (user) {
+  //     setUser(user);
+  //     if (initializing) setInitializing(false);
+  //     setLoading(false);
+  //   });
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
 
   if (loading) {
     return <ActivityIndicator />;
@@ -29,7 +29,8 @@ export default function NavigationStack() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      {user ? <HomeStack /> : <AuthStack />}
+      {/**user ? <HomeStack /> : <AuthStack />**/}
+      <HomeStack />
     </NavigationContainer>
   );
 }

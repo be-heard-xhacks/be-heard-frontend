@@ -21,9 +21,7 @@ export default function EducateScreen(props) {
         <View style={{ flex: 1 }}>
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate("Educate", {
-                screen: "ReadingSchedule",
-              });
+              props.navigation.navigate("ReadingSchedule", {});
               console.log("moved to reading schedule");
             }}
           >
@@ -31,7 +29,7 @@ export default function EducateScreen(props) {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate("Educate", { screen: "Spotlighted" });
+              props.navigation.navigate("Spotlighted");
               console.log("moved to spotlighted");
             }}
           >
@@ -39,7 +37,7 @@ export default function EducateScreen(props) {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate("Educate", { screen: "For You" });
+              props.navigation.navigate("For You");
               console.log("moved to for you");
             }}
           >
@@ -47,7 +45,7 @@ export default function EducateScreen(props) {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate("Educate", { screen: "Headlines" });
+              props.navigation.navigate("Headlines");
               console.log("moved to headlines");
             }}
           >

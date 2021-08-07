@@ -39,7 +39,7 @@ export default function Register(props) {
       alert("Must select at least 1 interest!");
       return;
     }
-    register(email, password)
+    register(email, password, selection)
   }
 
   return (

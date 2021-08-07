@@ -71,13 +71,15 @@ export const AuthProvider = ({ children }) => {
 
   //TODO: FIX ERROR MESSAGE
   //function to register the user
-  const register = async (user, pass) => {
+  const register = async (user, pass, interests) => {
     console.log("user is: " + user);
     console.log("pass is:" + pass);
+    console.log("interests:" + interests);
     console.log(
       JSON.stringify({
         email: user,
         password: pass,
+        interests: interests,
       })
     );
     const registerResponse = await fetch(
@@ -90,6 +92,7 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({
           email: user,
           password: pass,
+          interests: interests,
         }),
       }
     );
@@ -102,7 +105,6 @@ export const AuthProvider = ({ children }) => {
       alert("This email is already taken!");
     } else {
       alert("User has been successfully registered!");
-      //TODO: Add in route navigation to log-in screen afterwards pls
       await login(user, pass);
     }
   };

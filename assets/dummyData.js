@@ -30,6 +30,7 @@
 export default {
   spotlights: [
     {
+      hr: 8,
       title: "Protect Pololū Valley",
       label: "Conservation",
       image: require("./bg.jpg"),
@@ -37,6 +38,7 @@ export default {
       id: 4750621884138037688,
     },
     {
+      hr: 5,
       title:
         "Help Myanmar from Man-Made (Myanmar Military Terrorist) Humanitarian Disaster",
       label: "Myanmar",
@@ -45,6 +47,7 @@ export default {
       id: 2439856349582395234,
     },
     {
+      hr: 6,
       title: "Arctic Wildlife Refuge being Lobbied for Oil Drilling",
       label: "Environment",
       image: require("./bg.jpg"),

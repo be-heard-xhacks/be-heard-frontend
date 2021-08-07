@@ -56,7 +56,10 @@ export const AuthProvider = ({ children }) => {
     );
     const tokenStatusData = await tokenStatusResponse.json();
     const tokenStatus = tokenStatusData.status;
-    if (tokenStatus >= 400 || tokenStatusData.message === "Invalid username or password") {
+    if (
+      tokenStatus >= 400 ||
+      tokenStatusData.message === "Invalid username or password"
+    ) {
       console.log("Error signing in!");
       alert("Invalid username or password");
       setIsValidToken(false);
@@ -110,11 +113,11 @@ export const AuthProvider = ({ children }) => {
 
   //useEffect to track if the jwt token is valid
   useEffect(() => {
-    if (!userToken){
-      setIsValidToken(false);
-    }
-    else if (userToken && !isValidToken) {
-      const attemptLoginJWT = async () => {
+    const attemptLoginJWT = async () => {
+      if (!userToken) {
+        setIsValidToken(false);
+      } else if (userToken && !isValidToken) {
+        console.log("attempting log-in with: " + userToken);
         const tokenStatusResponse = await fetch(
           apiKeys.SERVER_BASE_URL + "/validateToken",
           {
@@ -134,18 +137,18 @@ export const AuthProvider = ({ children }) => {
         ) {
           console.log("Error signing in!");
           setIsValidToken(false);
-          setJWTToken(null);
+          setJWTToken("");
         } else {
           console.log("Successfully signed in");
           setIsValidToken(true);
         }
-      };
-
-      attemptLoginJWT();
-    }
+      }
+    };
+    attemptLoginJWT();
   }, [userToken]);
 
   const logout = async () => {
+    console.log("Logging out...");
     await setJWTToken("");
     setUserToken("");
   };

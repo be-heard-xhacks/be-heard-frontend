@@ -29,6 +29,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-inappbrowser-reborn": "^3.6.3",
     "react-native-pager-view": "^5.4.0",
     "react-native-paper": "^4.7.2",
     "react-native-reanimated": "~2.1.0",

@@ -40,6 +40,36 @@ export default function Login(props) {
       />
 
       <Button title="Log In" onPress={() => login(email, password)} />
+      <Button
+        title="Test Validate"
+        onPress={() => {
+          testLoginJWT();
+        }}
+      />
     </SafeAreaView>
   );
 }
+const testLoginJWT = async () => {
+  const tokenStatusResponse = await fetch(
+    "http://beheard-env.eba-qxzshfaw.us-west-1.elasticbeanstalk.com/validateToken",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "access-token":
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MTBlMTA0ZGI4NTEyYjUxZjFhNWU0N2MiLCJleHAiOjE2MjgzNjk3OTF9.5NSIU3KVJdrcEuOFL4AyREBjWPrITVQPhf1Fh3JEDbI",
+      },
+    }
+  );
+  const tokenStatusData = await tokenStatusResponse.json();
+  console.log(tokenStatusData);
+  const tokenStatus = tokenStatusData.status;
+  if (tokenStatus >= 400 || tokenStatusData.message === "token is invalid") {
+    console.log("Error signing in!");
+    // setIsValidToken(false);
+    // setJWTToken(null);
+  } else {
+    console.log("Successfully signed in");
+    //setIsValidToken(true);
+  }
+};

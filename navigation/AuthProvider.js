@@ -118,7 +118,7 @@ export const AuthProvider = ({ children }) => {
         setIsValidToken(false);
       } else if (userToken && !isValidToken) {
         console.log("attempting log-in with: " + userToken);
-        const tokenStatusResponse = await fetch(
+        const res = await fetch(
           apiKeys.SERVER_BASE_URL + "/validateToken",
           {
             method: "POST",
@@ -128,13 +128,10 @@ export const AuthProvider = ({ children }) => {
             },
           }
         );
-        const tokenStatusData = await tokenStatusResponse.json();
+        console.log(res.status)
+        const tokenStatusData = await res.json();
         console.log(tokenStatusData);
-        const tokenStatus = tokenStatusData.status;
-        if (
-          tokenStatus >= 400 ||
-          tokenStatusData.message === "token is invalid"
-        ) {
+        if (res.status >= 400) {
           console.log("Error signing in!");
           setIsValidToken(false);
           setJWTToken("");

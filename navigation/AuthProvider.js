@@ -103,6 +103,7 @@ export const AuthProvider = ({ children }) => {
     } else {
       alert("User has been successfully registered!");
       //TODO: Add in route navigation to log-in screen afterwards pls
+      await login(user, pass);
     }
   };
 

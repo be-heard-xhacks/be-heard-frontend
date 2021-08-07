@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   //function to login the user
   const login = async (user, pass) => {
     console.log("Basic " + encode(user + ":" + pass));
-    const tokenStatusResponse = await fetch(
+    const res = await fetch(
       apiKeys.SERVER_BASE_URL + "/login",
       {
         method: "POST",
@@ -54,12 +54,8 @@ export const AuthProvider = ({ children }) => {
         },
       }
     );
-    const tokenStatusData = await tokenStatusResponse.json();
-    const tokenStatus = tokenStatusData.status;
-    if (
-      tokenStatus >= 400 ||
-      tokenStatusData.message === "Invalid username or password"
-    ) {
+    const tokenStatusData = await res.json();
+    if (res.status >= 400) {
       console.log("Error signing in!");
       alert("Invalid username or password");
       setIsValidToken(false);
@@ -99,10 +95,8 @@ export const AuthProvider = ({ children }) => {
 
     const registerResponseData = await registerResponse.json();
     console.log(registerResponseData);
-    const registerStatus = registerResponseData.status;
     if (
-      registerStatus > 400 ||
-      registerResponseData.message === "Error, email is taken"
+      registerResponse.status > 400
     ) {
       alert("This email is already taken!");
     } else {

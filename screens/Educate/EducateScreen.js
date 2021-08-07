@@ -7,7 +7,6 @@ import {
   RefreshControl,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import ReadingSchedule from "./ReadingSchedule";
 
 export default function EducateScreen(props) {
   return (
@@ -21,7 +20,7 @@ export default function EducateScreen(props) {
         <View style={{ flex: 1 }}>
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate("ReadingSchedule", {});
+              props.navigation.navigate("Reading Schedule", {});
               console.log("moved to reading schedule");
             }}
           >

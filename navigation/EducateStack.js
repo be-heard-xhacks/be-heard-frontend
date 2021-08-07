@@ -18,7 +18,7 @@ export default function EducateStack() {
       />
       <Stack.Screen name="For You" component={ForYou} />
       <Stack.Screen name="Headlines" component={Headlines} />
-      <Stack.Screen name="ReadingSchedule" component={ReadingSchedule} />
+      <Stack.Screen name="Reading Schedule" component={ReadingSchedule} />
       <Stack.Screen name="Spotlighted" component={Spotlighted} />
     </Stack.Navigator>
   );

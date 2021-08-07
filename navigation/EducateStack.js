@@ -6,6 +6,7 @@ import ForYou from "../screens/Educate/ForYou";
 import Headlines from "../screens/Educate/Headlines";
 import ReadingSchedule from "../screens/Educate/ReadingSchedule";
 import Spotlighted from "../screens/Educate/Spotlighted";
+import Article from "../screens/Educate/Article";
 
 export default function EducateStack() {
   const Stack = createStackNavigator();
@@ -20,6 +21,7 @@ export default function EducateStack() {
       <Stack.Screen name="Headlines" component={Headlines} />
       <Stack.Screen name="Reading Schedule" component={ReadingSchedule} />
       <Stack.Screen name="Spotlighted" component={Spotlighted} />
+      <Stack.Screen name="Article" component={Article} />
     </Stack.Navigator>
   );
 }

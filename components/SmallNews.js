@@ -11,11 +11,17 @@ import global from "../styles.js";
 
 export default function SmallNews(props) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        props.navigation.navigate("Article", { article: props.article });
+        console.log("moved to article");
+      }}
+    >
       <View style={styles.text}>
         {props.spotlight ? (
           <Text style={global.topSubtitle}>
-            Spotlighted by {props.spotlightAuthor}
+            Spotlighted by {props.article.spotlightAuthor}
           </Text>
         ) : (
           <View style={styles.top}>
@@ -25,17 +31,21 @@ export default function SmallNews(props) {
             ></Image>
             <Text
               style={[global.topSubtitle]}
-            >{`  •  ${props.hr} hours ago`}</Text>
+            >{`  •  ${props.article.hr} hours ago`}</Text>
           </View>
         )}
-        <Text style={[global.headline, styles.spacing]}>{props.title}</Text>
+        <Text style={[global.headline, styles.spacing]}>
+          {props.article.title}
+        </Text>
         {/* <Image
             source={require('../assets/source.png')}
             style={global.srcImg}
           ></Image> */}
-        {props.spotlight && <Text style={global.tag}>{props.label}</Text>}
+        {props.spotlight && (
+          <Text style={global.tag}>{props.article.label}</Text>
+        )}
       </View>
-      <Image source={props.image} style={styles.img}></Image>
+      <Image source={props.article.image} style={styles.img}></Image>
     </TouchableOpacity>
   );
 }

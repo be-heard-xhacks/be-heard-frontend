@@ -60,6 +60,13 @@ export default {
       label: "Sports",
       image: require("./bg.jpg"),
       id: 475032723450934453,
+      summary: [
+        "Former Cardinal Theodore McCarrick is charged with three counts of indecent assault and battery on a person over 14.",
+        "The unnamed victim told investigators via Zoom in January that he was friends with a family member and outlined multiple incidents of alleged abuse.",
+        "Most of the alleged abuse took place outside of Massachusetts in New Jersey, New York and California. The complaint states that the victim was sexually abused over the years, including when he was an adult, with abuse that also allegedly took place in nearby Newton, Massachusetts.",
+      ],
+      source:
+        "https://www.usatoday.com/story/sports/olympics/2021/08/07/tokyo-olympics-japan-wins-gold-baseball-return-united-states-silver/5523227001/",
     },
     {
       hr: 2,

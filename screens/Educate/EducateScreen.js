@@ -40,11 +40,9 @@ export default function EducateScreen(props) {
       .map((article) => (
         <SmallNews
           spotlight={true}
-          title={article.title}
-          label={article.label}
-          image={article.image}
-          spotlightAuthor={article.spotlightAuthor}
+          article={article}
           key={article.id}
+          navigation={props.navigation}
         ></SmallNews>
       ));
   };
@@ -54,11 +52,9 @@ export default function EducateScreen(props) {
       .slice(0, n)
       .map((article) => (
         <BigNews
-          hr={article.hr}
-          title={article.title}
-          label={article.label}
-          image={article.image}
+          article={article}
           key={article.id}
+          navigation={props.navigation}
         ></BigNews>
       ));
   };
@@ -68,11 +64,9 @@ export default function EducateScreen(props) {
       .slice(0, n)
       .map((article) => (
         <SmallNews
-          hr={article.hr}
-          title={article.title}
-          label={article.label}
-          image={article.image}
+          article={article}
           key={article.id}
+          navigation={props.navigation}
         ></SmallNews>
       ));
   };

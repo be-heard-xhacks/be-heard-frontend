@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../navigation/AuthProvider";
 import { Text, View, TouchableOpacity, TextInput, StyleSheet, Button, ScrollView } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
@@ -11,6 +11,7 @@ import MySpotlight from "../components/MySpotlight";
 export default function Profile(props) {
 // const navigation = useNavigation();
 const { setIsProfile, logout } = useContext(AuthContext); 
+const [edit, setEdit] = useState(false); 
 const person = {
     "firstName": "Joe",
     "lastName": "Bruin",
@@ -62,8 +63,8 @@ const person = {
           text="Profile"
           style={styles.title}
         ></TextGradient>
-      {/* <FontAwesome name="user-circle" size={60} color="#B5B5B5" style={{alignSelf: 'center', marginVertical: 20}}/> */}
-      <View style={styles.section}>
+    <View>
+    <View style={styles.section}>
         <TextGradient
             height={40}
             text="Information"
@@ -115,11 +116,14 @@ const person = {
         </ScrollView>
     </View>
     <View style={styles.buttons}>
-        <Button title="Edit Settings" />
+        {/* <Button onPress={() => {setEdit(true)}} title="Edit Settings" /> */}
         <Button title="Edit Interests" />
         <Button onPress={logout} title="Log Out" />
     </View>
-      
+    </View>
+    {/* <View>
+        <Button title="Save Changes"></Button>
+    </View> */}
     </View>
   );
 }

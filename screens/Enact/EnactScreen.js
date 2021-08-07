@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../navigation/AuthProvider";
-import styles from "../../styles.js";
+import global from "../../styles.js";
 import {
   Text,
   View,
@@ -8,8 +8,10 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
+  ScrollView,
+  StyleSheet
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import EnactButton from "../../components/EnactButton"
 
 export default function EnactScreen(props) {
   const { user, logout } = useContext(AuthContext);
@@ -22,63 +24,62 @@ export default function EnactScreen(props) {
   // }, []); //ComponentDidMount
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView
-      //contentContainerStyle={styles.scroll}
-      // refreshControl={
-      //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      // }
-      >
-        <View style={{ flex: 1 }}>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.navigate("Create Spotlight", {});
-              console.log("moved to create spotlight");
-            }}
-          >
-            <Text>Spotlight Content</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.navigate("Email Representatives");
-              console.log("moved to email representatives");
-            }}
-          >
-            <Text>Email Representatives</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.navigate("Sign Petitions");
-              console.log("moved to sign petitions");
-            }}
-          >
-            <Text>Sign Petitions</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.navigate("Generate Linktree");
-              console.log("moved to generate linktree");
-            }}
-          >
-            <Text>Generate Linktree</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.buttons}>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate("Create Spotlight", {});
+            console.log("moved to create spotlight");
+          }}
+        >
+          <EnactButton page="Create Spotlight" spotlight={true} subtitle="Lorem ipsum dolor amet. Lorem ipsum dolor."></EnactButton>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate("Email Representatives");
+            console.log("moved to email representatives");
+          }}
+        >
+        <EnactButton page="Email Representatives"></EnactButton>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate("Sign Petitions");
+            console.log("moved to sign petitions");
+          }}
+        >
+        <EnactButton page="Sign Petitions"></EnactButton>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate("Generate Linktree");
+            console.log("moved to generate linktree");
+          }}
+        >
+        <EnactButton page="Generate Linktree"></EnactButton>
+        </TouchableOpacity>
+        <TouchableOpacity
             onPress={() => {
               props.navigation.navigate("Generate Infographics");
               console.log("moved to generate infographics");
             }}
           >
-            <Text>Generate Infographics</Text>
+          <EnactButton page="Generate Infographics"></EnactButton>
           </TouchableOpacity>
-        </View>
-      </ScrollView>
+        </ScrollView>
     </SafeAreaView>
   );
 }
 
-/* <View style={styles.container}>
-      <Text>Welcome {userName}</Text>
-      <Image style={styles.profileImage} source={{ uri: profilePic }} />
-      <Button onPress={logout} title="Log Out" />
-      </View>
-*/
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    // height: '100%',
+    margin:15,
+    // backgroundColor: 'red'
+  },
+  buttons: {
+    flex:1,
+    height: '100%',
+  }
+})

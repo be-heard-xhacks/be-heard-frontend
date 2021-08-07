@@ -31,6 +31,7 @@ export default function NavigationStack() {
     <NavigationContainer>
       {isValidToken ? <HomeStack /> : <AuthStack />}
       {/* <HomeStack /> */}
+
     </NavigationContainer>
   );
 }

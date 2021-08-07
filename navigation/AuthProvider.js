@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 export const AuthContext = createContext({});
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import apiKeys from "../apiKeys";
+import { encode } from "base-64";
 
 //status:401 if invalid token
 const getJWTToken = async () => {
@@ -31,6 +32,8 @@ export const AuthProvider = ({ children }) => {
   const [userToken, setUserToken] = useState("");
   const [isValidToken, setIsValidToken] = useState(false);
 
+  /*grab the token from storage when app first mounts, and attempt logging in thru
+  our useEffect */
   useEffect(() => {
     const grabToken = async () => {
       const storageToken = await getJWTToken();
@@ -38,14 +41,16 @@ export const AuthProvider = ({ children }) => {
     };
     grabToken();
   }, []);
+
+  //function to login the user
   const login = async (user, pass) => {
+    console.log(encode(user + ":" + pass));
     const tokenStatusResponse = await fetch(
       apiKeys.SERVER_BASE_URL + "/login",
       {
         method: "GET",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: window.btoa(user + ":" + pass),
+          "Authorization": "Basic " + encode(user + ":" + pass),
         },
       }
     );
@@ -64,6 +69,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   //TODO: FIX ERROR MESSAGE
+  //function to register the user
   const register = async (user, pass) => {
     console.log("user is: " + user);
     console.log("pass is:" + pass);
@@ -101,6 +107,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  //useEffect to track if the jwt token is valid
   useEffect(() => {
     if (userToken) {
       const attemptLoginJWT = async () => {

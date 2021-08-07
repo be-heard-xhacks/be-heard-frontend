@@ -18,6 +18,26 @@ export default function EmailReps(props) {
         }}
       ><Text>◂</Text></TouchableOpacity>
       <Text>Email Representatives</Text>
+      <Button
+          title="Test send email"
+          onPress={async () => {
+            const available = await MailComposer.isAvailableAsync()
+            console.log(available)
+            mailOpts = {
+              subject: 'Email representatives',
+              recipients: ['email'],
+              bccrecipients: ['matthewcn56@gmail.com'],
+              body: 'hellow orld'
+            }
+            MailComposer.composeAsync(mailOpts).then(res => {
+              console.log(res.status)
+            }).catch(err => {
+              console.log(err)
+            })
+            // console.log(res.status)
+          }}
+        >
+      </Button>
     </SafeAreaView>
   );
 }

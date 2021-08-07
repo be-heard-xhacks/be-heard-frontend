@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import EnactScreen from "../screens/EnactScreen";
 import EducateScreen from "../screens/EducateScreen";
@@ -9,9 +10,18 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 export default function HomeStack() {
   const Tab = createMaterialTopTabNavigator();
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="Home"
+      screenOptions={{
+        tabBarIndicatorStyle: { backgroundColor: 'black' },
+      }}
+    >
       <Tab.Screen name="Educate" component={EducateScreen} />
       <Tab.Screen name="Enact" component={EnactScreen} />
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+
+});
+

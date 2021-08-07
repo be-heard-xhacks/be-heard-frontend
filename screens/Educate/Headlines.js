@@ -1,22 +1,27 @@
 import React from "react";
 import styles from "../../styles.js";
 import { Text, TouchableOpacity, View, SafeAreaView } from "react-native";
-import { useNavigation } from '@react-navigation/native';
-import { useEffect } from "react/cjs/react.development";
+import { useNavigation } from "@react-navigation/native";
+import { useContext, useEffect } from "react/cjs/react.development";
+import { AuthContext } from "../../navigation/AuthProvider.js";
 
 export default function Headlines(props) {
+  const { list } = props.route.params;
   const navigation = useNavigation();
+  const { setDisplay } = useContext(AuthContext);
   useEffect(() => {
-    props.setDisplay(false)
-  });
+    setDisplay(false);
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={() => {
-          props.setDisplay(true)
+          setDisplay(true);
           navigation.goBack();
         }}
-      ><Text>◂</Text></TouchableOpacity>
+      >
+        <Text>◂</Text>
+      </TouchableOpacity>
       <Text>Headlines</Text>
     </SafeAreaView>
   );

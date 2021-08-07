@@ -4,6 +4,7 @@ import { Text, TouchableOpacity, View, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useContext, useEffect } from "react/cjs/react.development";
 import { AuthContext } from "../../navigation/AuthProvider.js";
+import BigNews from "../../components/BigNews";
 
 export default function Headlines(props) {
   const { list } = props.route.params;
@@ -12,6 +13,17 @@ export default function Headlines(props) {
   useEffect(() => {
     setDisplay(false);
   }, []);
+
+  const generateList = () => {
+    return list.map((article) => (
+      <BigNews
+        article={article}
+        key={article.id}
+        navigation={props.navigation}
+      ></BigNews>
+    ));
+  };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
@@ -23,6 +35,7 @@ export default function Headlines(props) {
         <Text>◂</Text>
       </TouchableOpacity>
       <Text>Headlines</Text>
+      {generateList()}
     </SafeAreaView>
   );
 }

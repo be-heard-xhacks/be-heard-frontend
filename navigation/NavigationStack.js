@@ -8,7 +8,7 @@ import { ActivityIndicator } from "react-native";
 // import firebase from "firebase";
 
 export default function NavigationStack() {
-  const { user, setUser } = useContext(AuthContext);
+  const { isValidToken } = useContext(AuthContext);
   const [initializing, setInitializing] = useState(true);
   const [loading, setLoading] = useState(false); // useState(true) after we set up user state change handler
 
@@ -29,8 +29,9 @@ export default function NavigationStack() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      {/* {user ? <HomeStack /> : <AuthStack />} */}
-      <HomeStack />
+      {isValidToken ? <HomeStack /> : <AuthStack />}
+      {/* <HomeStack /> */}
+
     </NavigationContainer>
   );
 }

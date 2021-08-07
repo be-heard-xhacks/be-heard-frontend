@@ -1,61 +1,70 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, Touchable, TouchableOpacity} from "react-native";
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import global from "../styles.js";
-
 
 export default function SmallNews(props) {
   return (
     <TouchableOpacity style={styles.container}>
-        <View style={styles.text}>
-          {props.spotlight ? <Text style={global.topSubtitle}>Spotlighted by Joe Bruin</Text> :
+      <View style={styles.text}>
+        {props.spotlight ? (
+          <Text style={global.topSubtitle}>
+            Spotlighted by {props.spotlightAuthor}
+          </Text>
+        ) : (
           <View style={styles.top}>
             <Image
-                source={require('../assets/source.png')}
-                style={global.srcImg}
+              source={require("../assets/source.png")}
+              style={global.srcImg}
             ></Image>
-            <Text style={[global.topSubtitle]}>  •  5 hours ago</Text>
+            <Text
+              style={[global.topSubtitle]}
+            >{`  •  ${props.hr} hours ago`}</Text>
           </View>
-          }
-          <Text style={[global.headline, styles.spacing]}>Lorem Ipsum Dolor Sit Amet Consec Tetur Adipiscing Elit</Text>
-          {/* <Image
+        )}
+        <Text style={[global.headline, styles.spacing]}>{props.title}</Text>
+        {/* <Image
             source={require('../assets/source.png')}
             style={global.srcImg}
           ></Image> */}
-          {props.spotlight && <Text style={global.tag}>Label</Text>}
-        </View>
-        <Image
-          source={require('../assets/bg.jpg')}
-          style={styles.img}
-        ></Image>
+        {props.spotlight && <Text style={global.tag}>{props.label}</Text>}
+      </View>
+      <Image source={props.image} style={styles.img}></Image>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-    img: {
-        height:100,
-        borderRadius: 5,
-        flex: 1,
-        marginLeft: 10
-    },
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width:'100%',
-        borderBottomColor: '#B5B5B5',
-        paddingBottom: 15,
-        marginBottom:15,
-        borderBottomWidth: StyleSheet.hairlineWidth
-    },
-    spacing: {
-        marginVertical: 10
-    },
-    text: {
-        flex:2.5
-    },
-    top: {
-      flexDirection: 'row',
-      alignItems: 'center',
-  }
-})
+  img: {
+    height: 100,
+    borderRadius: 5,
+    flex: 1,
+    marginLeft: 10,
+  },
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    borderBottomColor: "#B5B5B5",
+    paddingBottom: 15,
+    marginBottom: 15,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  spacing: {
+    marginVertical: 10,
+  },
+  text: {
+    flex: 2.5,
+  },
+  top: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+});

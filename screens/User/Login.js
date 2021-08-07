@@ -11,8 +11,6 @@ import {
 
 import { AuthContext } from "../../navigation/AuthProvider.js";
 
-import * as MailComposer from 'expo-mail-composer';
-
 export default function Login(props) {
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");

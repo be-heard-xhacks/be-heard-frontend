@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../navigation/AuthProvider";
 import { StyleSheet, Touchable } from "react-native";
-import { Text, View, Button, Image, TouchableOpacity, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import TextGradient from "../../components/TextGradient";
 import SmallNews from "../../components/SmallNews";
 import BigNews from "../../components/BigNews";
-
+import dummyData from "../../assets/dummyData";
 import global from "../../styles.js";
 
 export default function EducateScreen(props) {
@@ -21,20 +28,75 @@ export default function EducateScreen(props) {
   /* <Image style={styles.profileImage} source={{ uri: profilePic }} /> */
   /* <Button onPress={logout} title="Log Out" /> */
 
+  const [spotlights, setSpotlights] = useState(dummyData.spotlights);
+  const [forYou, setForYou] = useState(dummyData.forYou);
+  const [headlines, setHeadlines] = useState(dummyData.headlines);
+
+  // create useEffect for each of these above
+
+  const generateSpotlights = (n) => {
+    return spotlights
+      .slice(0, n)
+      .map((article) => (
+        <SmallNews
+          spotlight={true}
+          title={article.title}
+          label={article.label}
+          image={article.image}
+          spotlightAuthor={article.spotlightAuthor}
+          key={article.id}
+        ></SmallNews>
+      ));
+  };
+
+  const generateForYou = (n) => {
+    return forYou
+      .slice(0, n)
+      .map((article) => (
+        <BigNews
+          hr={article.hr}
+          title={article.title}
+          label={article.label}
+          image={article.image}
+          key={article.id}
+        ></BigNews>
+      ));
+  };
+
+  const generateHeadliens = (n) => {
+    return headlines
+      .slice(0, n)
+      .map((article) => (
+        <SmallNews
+          hr={article.hr}
+          title={article.title}
+          label={article.label}
+          image={article.image}
+          key={article.id}
+        ></SmallNews>
+      ));
+  };
+
   return (
     <ScrollView>
       <View style={styles.section}>
-        <TextGradient height={32} text="Today's Pick" style={global.h1}></TextGradient>
-        <Button title="Logout" onPress = {() => logout()}/>
+
+        <TextGradient
+          height={32}
+          text="Today's Pick"
+          style={global.h1}
+        ></TextGradient>
         <TouchableOpacity>
           <Image
-            source={require('../../assets/bg.jpg')}
+            source={require("../../assets/bg.jpg")}
             style={styles.todayImg}
           ></Image>
           <View style={styles.headline}>
-            <Text style={global.headline}>Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit</Text>
+            <Text style={global.headline}>
+              Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit
+            </Text>
             <Image
-              source={require('../../assets/source.png')}
+              source={require("../../assets/source.png")}
               style={global.srcImg}
             ></Image>
           </View>
@@ -49,71 +111,77 @@ export default function EducateScreen(props) {
           <Text style={global.navLabel}>See reading schedule ▸</Text>
         </TouchableOpacity>
       </View>
-      
+
       <View style={styles.section}>
-        <TextGradient height={32} text="Spotlighted" style={global.h1}></TextGradient>
-        <SmallNews spotlight={true}></SmallNews>
-        <SmallNews spotlight={true}></SmallNews>
-        <SmallNews spotlight={true}></SmallNews>
+        <TextGradient
+          height={32}
+          text="Spotlighted"
+          style={global.h1}
+        ></TextGradient>
+        {generateSpotlights(3)}
         <TouchableOpacity
-        onPress={() => {
-          props.navigation.navigate("Spotlighted");
-          console.log("moved to spotlighted");
-        }}
-      >
-        <Text style={global.navLabel}>See all ▸</Text>
-      </TouchableOpacity>
+          onPress={() => {
+            props.navigation.navigate("Spotlighted");
+            console.log("moved to spotlighted");
+          }}
+        >
+          <Text style={global.navLabel}>See all ▸</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.section}>
-        <TextGradient height={32} text="For You" style={global.h1}></TextGradient>
-        <BigNews></BigNews>
-        <BigNews></BigNews>
-        <BigNews></BigNews>
+        <TextGradient
+          height={32}
+          text="For You"
+          style={global.h1}
+        ></TextGradient>
+        {generateForYou(3)}
         <TouchableOpacity
-        onPress={() => {
-          props.navigation.navigate("For You");
-          console.log("moved to for you");
-        }}
-      >
-        <Text style={global.navLabel}>See all ▸</Text>
-      </TouchableOpacity>
+          onPress={() => {
+            props.navigation.navigate("For You");
+            console.log("moved to for you");
+          }}
+        >
+          <Text style={global.navLabel}>See all ▸</Text>
+        </TouchableOpacity>
       </View>
-      
+
       <View style={styles.section}>
-        <TextGradient height={32} text="Headlines" style={global.h1}></TextGradient>
-        <SmallNews></SmallNews>
-        <SmallNews></SmallNews>
-        <SmallNews></SmallNews>
+        <TextGradient
+          height={32}
+          text="Headlines"
+          style={global.h1}
+        ></TextGradient>
+        {generateHeadliens(3)}
         <TouchableOpacity
-        onPress={() => {
-          props.navigation.navigate("Headlines");
-          console.log("moved to headlines");
-        }}
-      >
-        <Text style={global.navLabel}>See all ▸</Text>
-      </TouchableOpacity>
+          onPress={() => {
+            props.navigation.navigate("Headlines");
+            console.log("moved to headlines");
+          }}
+        >
+          <Text style={global.navLabel}>See all ▸</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  section:{
+  section: {
     padding: 25,
     marginTop: 10,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   todayImg: {
-    width: '100%',
+    width: "100%",
     height: 120,
-    borderRadius:5,
-    marginBottom: 10
+    borderRadius: 5,
+    marginBottom: 10,
   },
   headline: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginVertical: 10,
-  }
+  },
 });

@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import EnactScreen from "../screens/EnactScreen";
 import EducateScreen from "../screens/EducateScreen";
+import EnactScreen from "../screens/EnactScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 ``;
@@ -20,8 +19,4 @@ export default function HomeStack() {
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-
-});
 

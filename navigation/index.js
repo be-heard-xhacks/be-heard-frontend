@@ -3,26 +3,13 @@ import { SafeAreaView, StyleSheet, Text } from "react-native";
 import { AuthProvider } from "./AuthProvider";
 import NavigationStack from "./NavigationStack";
 
-import MaskedView from "@react-native-community/masked-view";
-import { LinearGradient } from "expo-linear-gradient";
-
+import TextGradient from "../components/TextGradient";
 
 export default function Providers() {
   return (
     <AuthProvider>
       <SafeAreaView style={styles.container}>
-        {/* <Text style={styles.pageTitle}>Be Heard</Text> */}
-        <MaskedView
-          style={{ height: 32 }}
-          maskElement={<Text style={styles.pageTitle}>Be Heard</Text>}
-        >
-          <LinearGradient
-            colors={['#FF0000', '#FF9900']}
-            start={{ x: 1, y: 1 }}
-            end={{ x: 0, y: 0.33 }}
-            style={{ flex: 1 }}
-          />
-        </MaskedView>
+        <TextGradient height={32} text="Be Heard" style={styles.pageTitle}></TextGradient>
         <NavigationStack />
       </SafeAreaView>
     </AuthProvider>

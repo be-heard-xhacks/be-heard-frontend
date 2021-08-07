@@ -29,8 +29,8 @@ export default function NavigationStack() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      {user ? <HomeStack /> : <AuthStack />}
-      {/* <HomeStack /> */}
+      {/* {user ? <HomeStack /> : <AuthStack />} */}
+      <HomeStack />
     </NavigationContainer>
   );
 }

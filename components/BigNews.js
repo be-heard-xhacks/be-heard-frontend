@@ -6,49 +6,50 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function BigNews(props) {
   return (
-    <TouchableOpacity style={styles.container}>
-        <ImageBackground source={require('../assets/bg.jpg')} resizeMode="cover" style={styles.image}>
-            <LinearGradient
-                colors={['rgba(0,0,0,0)', 'rgba(0,0,0,1)']}
-                start={{ x: 1, y: 1 }}
-                end={{ x: 0, y: 0.33 }}
-                style={{ flex: 1 }}
-            >
-            <View style={styles.text}>
-                    <View style={styles.top}>
-                        <Image
-                            source={require('../assets/source.png')}
-                            style={global.srcImg}
-                        ></Image>
-                        <Text style={global.topSubtitle}> •  5 hours ago</Text>
-                    </View>
-                    <Text style={[global.headline, styles.spacing]}>Lorem Ipsum Dolor Sit Amet Consec Tetur Adipiscing Elit</Text>
-                    <Text style={global.tag}>Label</Text>
-                </View>   
-            </LinearGradient>
-        </ImageBackground>
-        {/* <Image
-          source={require('../assets/bg.jpg')}
-          style={styles.img}
-        ></Image> */}
-    </TouchableOpacity>
+    <View style={styles.container}>
+        <TouchableOpacity>
+            <ImageBackground source={require('../assets/bg.jpg')} resizeMode="cover" style={styles.image}>
+                <LinearGradient
+                    colors={['rgba(0,0,0,0)', 'rgba(0,0,0,.9)']}
+                    start={{ x: 0.5, y: 0 }}
+                    end={{ x: 0.5, y: 0.75 }}
+                    style={{ flex: 1, justifyContent: 'flex-end' }}
+                >
+                <View style={styles.text}>
+                        <View style={styles.top}>
+                            <Image
+                                source={require('../assets/source.png')}
+                                style={global.srcImg}
+                            ></Image>
+                            <Text style={[global.topSubtitle, {color: 'white'}]}>  •  5 hours ago</Text>
+                        </View>
+                        <Text style={[global.headline, styles.spacing, , {color: 'white'}]}>Lorem Ipsum Dolor Sit Amet Consec Tetur Adipiscing Elit</Text>
+                        <Text style={[global.tag, , {color: 'white', borderColor:'white'}]}>Label</Text>
+                    </View>   
+                </LinearGradient>
+            </ImageBackground>
+        </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
     image: {
         // height:100,
-        // borderRadius: 5,
+        borderRadius: 5,
+        overflow:'hidden',
+        height: 225,
         // flex: 1,
         // marginLeft: 10
     },
     container: {
-        paddingBottom: 15,
-        marginBottom:15,
-        borderRadius: 5
+        flex: 1,
+        paddingBottom: 5,
+        marginBottom:10,
+        borderRadius: 5,
     },
     spacing: {
-        marginVertical: 10
+        marginVertical: 15
     },
     text: {
         padding:20,

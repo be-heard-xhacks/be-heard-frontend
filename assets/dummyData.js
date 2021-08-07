@@ -59,17 +59,15 @@ export default {
     {
       hr: 5,
       title:
-        "Japan wins gold in baseball's return to Olympics; U.S. takes silver",
-      label: "Sports",
-      image: require("./bg.jpg"),
+        "Video: Kiren Rijiju Pops Champagne To Celebrate India's Best Olympic Show",
+      label: "Champagne",
+      image:
+        "https://c.ndtvimg.com/2021-08/qqm883ao_kiren-rijiju_625x300_07_August_21.jpg",
       id: 475032723450934453,
-      summary: [
-        "Former Cardinal Theodore McCarrick is charged with three counts of indecent assault and battery on a person over 14.",
-        "The unnamed victim told investigators via Zoom in January that he was friends with a family member and outlined multiple incidents of alleged abuse.",
-        "Most of the alleged abuse took place outside of Massachusetts in New Jersey, New York and California. The complaint states that the victim was sexually abused over the years, including when he was an adult, with abuse that also allegedly took place in nearby Newton, Massachusetts.",
-      ],
-      source:
-        "https://www.usatoday.com/story/sports/olympics/2021/08/07/tokyo-olympics-japan-wins-gold-baseball-return-united-states-silver/5523227001/",
+      summary:
+        "Union Minister Kiren Rijiju popped the champagne today to celebrate India's best-ever performance at the Olympics.",
+      link: "https://www.ndtv.com/india-news/video-kiren-rijiju-pops-champagne-to-celebrate-indias-best-olympic-show-2505228",
+      source: "ndtv",
     },
     {
       hr: 2,

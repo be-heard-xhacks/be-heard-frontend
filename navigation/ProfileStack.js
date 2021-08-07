@@ -10,7 +10,7 @@ export default function ProfileStack() {
       <Stack.Screen
         name="Profile"
         component={Profile}
-        // options={{ header: () => null }}
+        options={{ header: () => null }}
       />
     </Stack.Navigator>
   );

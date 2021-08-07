@@ -6,7 +6,7 @@ export default StyleSheet.create({
     fontSize: 20
   },
   body: {
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'regular',
   },
   headline: {
@@ -42,5 +42,13 @@ export default StyleSheet.create({
     height: 40,
     borderWidth: 0.5,
     padding: 10,
+  },
+  back:{
+    position: 'absolute',
+    top: -10,
+    left: 10,
+    // padding: 10,
+    // height:50,
+    // backgroundColor:'red'
   }
 });

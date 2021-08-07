@@ -44,11 +44,11 @@ export const AuthProvider = ({ children }) => {
 
   //function to login the user
   const login = async (user, pass) => {
-    console.log(encode(user + ":" + pass));
+    console.log("Basic " + encode(user + ":" + pass));
     const tokenStatusResponse = await fetch(
       apiKeys.SERVER_BASE_URL + "/login",
       {
-        method: "GET",
+        method: "POST",
         headers: {
           Authorization: "Basic " + encode(user + ":" + pass),
         },
@@ -56,8 +56,9 @@ export const AuthProvider = ({ children }) => {
     );
     const tokenStatusData = await tokenStatusResponse.json();
     const tokenStatus = tokenStatusData.status;
-    if (tokenStatus >= 400) {
+    if (tokenStatus >= 400 || tokenStatusData.message === "Invalid username or password") {
       console.log("Error signing in!");
+      alert("Invalid username or password");
       setIsValidToken(false);
       setJWTToken("");
     } else {
@@ -109,7 +110,10 @@ export const AuthProvider = ({ children }) => {
 
   //useEffect to track if the jwt token is valid
   useEffect(() => {
-    if (userToken) {
+    if (!userToken){
+      setIsValidToken(false);
+    }
+    else if (userToken && !isValidToken) {
       const attemptLoginJWT = async () => {
         const tokenStatusResponse = await fetch(
           apiKeys.SERVER_BASE_URL + "/validateToken",
@@ -141,14 +145,17 @@ export const AuthProvider = ({ children }) => {
     }
   }, [userToken]);
 
-  const logout = () => {};
+  const logout = async () => {
+    await setJWTToken("");
+    setUserToken("");
+  };
   return (
     <AuthContext.Provider
       value={{
-        // user,
-        // setUser,
+        userToken,
+        isValidToken,
         login: login,
-        // logout: logout,
+        logout: logout,
         register: register,
       }}
     >

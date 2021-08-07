@@ -16,7 +16,7 @@ import dummyData from "../../assets/dummyData";
 import global from "../../styles.js";
 
 export default function EducateScreen(props) {
-  const { user, logout } = useContext(AuthContext);
+  const {logout } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
 
@@ -74,6 +74,7 @@ export default function EducateScreen(props) {
   return (
     <ScrollView>
       <View style={styles.section}>
+
         <TextGradient
           height={32}
           text="Today's Pick"

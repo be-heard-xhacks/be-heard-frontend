@@ -55,8 +55,8 @@ export default function Article(props) {
 
   const displaySummary = (summary) => {
     return summary.map((sentence) => (
-      <View style={{ padding: 10 }}>
-        <Text key={sentence}>{sentence}</Text>
+      <View key={sentence} style={{ padding: 10 }}>
+        <Text>{sentence}</Text>
       </View>
     ));
   };

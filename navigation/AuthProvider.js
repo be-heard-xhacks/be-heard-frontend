@@ -3,7 +3,7 @@ import React, { createContext } from "react";
 import { useState, useEffect } from "react";
 export const AuthContext = createContext({});
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import apiKeys from "../apiKeys";
+import apiKeys from "../config/apiKeys";
 import { encode } from "base-64";
 
 //status:401 if invalid token
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       {
         method: "GET",
         headers: {
-          "Authorization": "Basic " + encode(user + ":" + pass),
+          Authorization: "Basic " + encode(user + ":" + pass),
         },
       }
     );

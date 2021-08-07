@@ -9,7 +9,10 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 export default function HomeStack() {
   const Tab = createMaterialTopTabNavigator();
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="Home"
+    screenOptions={{
+      tabBarIndicatorStyle: { backgroundColor: 'black' },
+    }}>
       <Tab.Screen name="Educate" component={EducateStack} />
       <Tab.Screen name="Enact" component={EnactStack} />
     </Tab.Navigator>

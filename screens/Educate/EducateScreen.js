@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../navigation/AuthProvider";
 import { StyleSheet } from "react-native";
-import { Text, View, Button, Image, TouchableOpacity } from "react-native";
+import { Text, View, Button, Image, TouchableOpacity, ScrollView } from "react-native";
 import TextGradient from "../../components/TextGradient";
+import SmallNews from "../../components/SmallNews";
 
 import global from "../../styles.js";
 
-export default function EducateScreen() {
+export default function EducateScreen(props) {
   const { user, logout } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
@@ -20,7 +21,7 @@ export default function EducateScreen() {
   /* <Button onPress={logout} title="Log Out" /> */
 
   return (
-    <View>
+    <ScrollView>
       <View style={styles.section}>
         <TextGradient height={32} text="Today's Pick" style={global.h1}></TextGradient>
         <Image
@@ -35,23 +36,32 @@ export default function EducateScreen() {
           ></Image>
         </View>
         <Text style={global.tag}>Label</Text>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate("Reading Schedule", {});
+            console.log("moved to reading schedule");
+          }}
+        >
+          <Text style={global.navLabel}>See reading schedule ▸</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          props.navigation.navigate("Reading Schedule", {});
-          console.log("moved to reading schedule");
-        }}
-      >
-        <Text>Today's Pick..</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
+      
+      <View style={styles.section}>
+        <TextGradient height={32} text="Spotlighted" style={global.h1}></TextGradient>
+        <SmallNews></SmallNews>
+        <SmallNews></SmallNews>
+        <SmallNews></SmallNews>
+        <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("Spotlighted");
           console.log("moved to spotlighted");
         }}
       >
-        <Text>Spotlighted</Text>
+        <Text style={global.navLabel}>See all ▸</Text>
       </TouchableOpacity>
+      </View>
+
+      
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("For You");
@@ -68,14 +78,14 @@ export default function EducateScreen() {
       >
         <Text>Headlinesss</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   section:{
     padding: 25,
-    marginVertical: 10,
+    marginTop: 10,
     backgroundColor: 'white',
   },
   todayImg: {
@@ -88,6 +98,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 5,
+    marginVertical: 10,
   }
 });

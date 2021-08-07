@@ -18,11 +18,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  pageTitle: {
-    alignSelf: 'center',
-    fontFamily: 'boldfont',
-    fontSize: 32,
-    marginTop:5
   }
 });

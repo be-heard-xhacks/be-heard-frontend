@@ -51,9 +51,9 @@ export default function EducateScreen(props) {
       
       <View style={styles.section}>
         <TextGradient height={32} text="Spotlighted" style={global.h1}></TextGradient>
-        <SmallNews></SmallNews>
-        <SmallNews></SmallNews>
-        <SmallNews></SmallNews>
+        <SmallNews spotlight={true}></SmallNews>
+        <SmallNews spotlight={true}></SmallNews>
+        <SmallNews spotlight={true}></SmallNews>
         <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("Spotlighted");
@@ -78,14 +78,21 @@ export default function EducateScreen(props) {
         <Text style={global.navLabel}>See all ▸</Text>
       </TouchableOpacity>
       </View>
-      <TouchableOpacity
+      
+      <View style={styles.section}>
+        <TextGradient height={32} text="Headlines" style={global.h1}></TextGradient>
+        <SmallNews></SmallNews>
+        <SmallNews></SmallNews>
+        <SmallNews></SmallNews>
+        <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("Headlines");
           console.log("moved to headlines");
         }}
       >
-        <Text>Headlinesss</Text>
+        <Text style={global.navLabel}>See all ▸</Text>
       </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }

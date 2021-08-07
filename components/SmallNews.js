@@ -7,13 +7,21 @@ export default function SmallNews(props) {
   return (
     <TouchableOpacity style={styles.container}>
         <View style={styles.text}>
-          <Text style={global.topSubtitle}>Spotlighted by Joe Bruin</Text>
+          {props.spotlight ? <Text style={global.topSubtitle}>Spotlighted by Joe Bruin</Text> :
+          <View style={styles.top}>
+            <Image
+                source={require('../assets/source.png')}
+                style={global.srcImg}
+            ></Image>
+            <Text style={[global.topSubtitle]}>  •  5 hours ago</Text>
+          </View>
+          }
           <Text style={[global.headline, styles.spacing]}>Lorem Ipsum Dolor Sit Amet Consec Tetur Adipiscing Elit</Text>
           {/* <Image
             source={require('../assets/source.png')}
             style={global.srcImg}
           ></Image> */}
-          <Text style={global.tag}>Label</Text>
+          {props.spotlight && <Text style={global.tag}>Label</Text>}
         </View>
         <Image
           source={require('../assets/bg.jpg')}
@@ -45,5 +53,9 @@ const styles = StyleSheet.create({
     },
     text: {
         flex:2.5
-    }
+    },
+    top: {
+      flexDirection: 'row',
+      alignItems: 'center',
+  }
 })

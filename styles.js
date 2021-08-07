@@ -3,19 +3,19 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   h1: {
     fontFamily: 'boldfont',
-  //   fontSize: 22
-  // },
-  // h2: {
-  //   fontFamily: 'boldfont',
     fontSize: 20
+  },
+  body: {
+    fontSize: 14,
+    fontFamily: 'regular',
   },
   headline: {
     fontSize: 16,
     fontFamily: 'medium',
   },
   srcImg: {
-    height: 15,
-    width: 40,
+    height: 12,
+    width: 25,
     resizeMode: 'contain'
   },
   tag: {
@@ -35,7 +35,7 @@ export default StyleSheet.create({
     fontFamily: 'light'
   },
   topSubtitle: {
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: 'light'
   },
   input:{

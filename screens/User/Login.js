@@ -36,6 +36,7 @@ export default function Login(props) {
         style={global.input}
         onChangeText={onChangePassword}
         value={password}
+        secureTextEntry={true}
         placeholder="Password"
       />
 

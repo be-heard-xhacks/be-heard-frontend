@@ -13,9 +13,14 @@ import { LinearGradient } from "expo-linear-gradient";
 export default function BigNews(props) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate("Article", { article: props.article });
+          console.log("moved to article");
+        }}
+      >
         <ImageBackground
-          source={props.image}
+          source={props.article.image}
           resizeMode="cover"
           style={styles.image}
         >
@@ -33,17 +38,17 @@ export default function BigNews(props) {
                 ></Image>
                 <Text
                   style={[global.topSubtitle, { color: "white" }]}
-                >{`  •  ${props.hr} hours ago`}</Text>
+                >{`  •  ${props.article.hr} hours ago`}</Text>
               </View>
               <Text
                 style={[global.headline, styles.spacing, , { color: "white" }]}
               >
-                {props.title}
+                {props.article.title}
               </Text>
               <Text
                 style={[global.tag, , { color: "white", borderColor: "white" }]}
               >
-                {props.label}
+                {props.article.label}
               </Text>
             </View>
           </LinearGradient>

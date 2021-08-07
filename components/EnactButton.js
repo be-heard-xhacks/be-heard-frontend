@@ -4,10 +4,10 @@ import global from "../styles.js";
 import { LinearGradient } from "expo-linear-gradient";
 
 
-export default function BigNews(props) {
+export default function EnactButton(props) {
   return (
     <View style={styles.container}>
-            <ImageBackground source={require('../assets/bg.jpg')} resizeMode="cover" style={styles.image}>
+            <ImageBackground source={props.img} resizeMode="cover" style={styles.image}>
                 <LinearGradient
                     colors={props.spotlight ? ['#FF0000', '#FF9900']:['rgba(0,0,0,0)', 'rgba(0,0,0,.9)']}
                     start={props.spotlight ? { x: 0, y: 0.5 }:{ x: 0.5, y: 0 }}

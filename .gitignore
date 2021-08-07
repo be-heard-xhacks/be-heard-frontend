@@ -10,6 +10,7 @@ npm-debug.*
 web-build/
 apiKeys.js
 
+config/apiKeys.js
 
 # macOS
 .DS_Store

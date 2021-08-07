@@ -26,7 +26,7 @@ export default function EducateScreen(props) {
   // }, []); //ComponentDidMount
 
   /* <Image style={styles.profileImage} source={{ uri: profilePic }} /> */
-  /* <Button onPress={logout} title="Log Out" /> */
+   
 
   const [spotlights, setSpotlights] = useState(dummyData.spotlights);
   const [forYou, setForYou] = useState(dummyData.forYou);
@@ -80,6 +80,7 @@ export default function EducateScreen(props) {
           text="Today's Pick"
           style={global.h1}
         ></TextGradient>
+        <Button onPress={logout} title="Log Out" /> 
         <TouchableOpacity>
           <Image
             source={require("../../assets/bg.jpg")}

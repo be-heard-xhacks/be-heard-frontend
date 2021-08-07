@@ -16,25 +16,29 @@ export default function EducateStack(props) {
         component={EducateScreen}
         options={{ header: () => null }}
       />
-      <Stack.Screen name="Article" component={Article} />
+      <Stack.Screen
+        name="Article"
+        component={Article}
+        options={{ header: () => null }}
+      />
       <Stack.Screen
         name="For You"
-        children={() => <ForYou setDisplay={props.setDisplay} />}
+        component={ForYou}
         options={{ header: () => null }}
       />
       <Stack.Screen
         name="Headlines"
-        children={() => <Headlines setDisplay={props.setDisplay} />}
+        component={Headlines}
         options={{ header: () => null }}
       />
       <Stack.Screen
         name="Reading Schedule"
-        children={() => <ReadingSchedule setDisplay={props.setDisplay} />}
+        component={ReadingSchedule}
         options={{ header: () => null }}
       />
       <Stack.Screen
         name="Spotlighted"
-        children={() => <Spotlighted setDisplay={props.setDisplay} />}
+        component={Spotlighted}
         options={{ header: () => null }}
       />
     </Stack.Navigator>

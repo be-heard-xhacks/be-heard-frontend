@@ -127,7 +127,7 @@ export default function EducateScreen(props) {
         {generateSpotlights(3)}
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate("Spotlighted");
+            props.navigation.navigate("Spotlighted", { list: spotlights });
             console.log("moved to spotlighted");
           }}
         >
@@ -144,7 +144,7 @@ export default function EducateScreen(props) {
         {generateForYou(3)}
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate("For You");
+            props.navigation.navigate("For You", { list: forYou });
             console.log("moved to for you");
           }}
         >
@@ -161,7 +161,7 @@ export default function EducateScreen(props) {
         {generateHeadliens(3)}
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate("Headlines");
+            props.navigation.navigate("Headlines", { list: headlines });
             console.log("moved to headlines");
           }}
         >

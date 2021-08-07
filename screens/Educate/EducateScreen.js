@@ -13,14 +13,6 @@ export default function EducateScreen(props) {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
 
-  // useEffect(() => {
-  //   setUserName(user.displayName);
-  //   setProfilePic(user.photoURL);
-  // }, []); //ComponentDidMount
-
-  /* <Image style={styles.profileImage} source={{ uri: profilePic }} /> */
-  /* <Button onPress={logout} title="Log Out" /> */
-
   return (
     <ScrollView>
       <View style={styles.section}>

@@ -13,6 +13,8 @@ import { AuthContext } from "../../navigation/AuthProvider.js";
 export default function Register(props) {
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
+  const [firstName, onChangeFirstName] = React.useState("");
+  const [lastName, onChangeLastName] = React.useState("");
   const [registered, setRegistered] = React.useState(false);
   const { register, login } = useContext(AuthContext);
   const interests = ['advocacy', 'grassroots', 'feminism', 'politics', 'society',
@@ -20,7 +22,6 @@ export default function Register(props) {
   const [selection, setSelection] = React.useState([])
   
   const updateSelection = (choice) => {
-    console.log(selection)
     if (selection.includes(choice)) {
       setSelection(selection.filter((item) => choice !== item))
     } else{
@@ -39,7 +40,14 @@ export default function Register(props) {
       alert("Must select at least 1 interest!");
       return;
     }
-    register(email, password, selection)
+    const profile = {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      interests: selection,
+    }
+    register(profile)
   }
 
   return (
@@ -80,6 +88,18 @@ export default function Register(props) {
         value={password}
         secureTextEntry={true}
         placeholder="Password"
+      />
+      <TextInput
+        style={global.input}
+        onChangeText={onChangeFirstName}
+        value={firstName}
+        placeholder="First Name"
+      />
+      <TextInput
+        style={global.input}
+        onChangeText={onChangeLastName}
+        value={lastName}
+        placeholder="Last Name"
       />
 
       <Button title="Register" onPress={() => setRegistered(true)} />

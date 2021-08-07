@@ -71,17 +71,9 @@ export const AuthProvider = ({ children }) => {
 
   //TODO: FIX ERROR MESSAGE
   //function to register the user
-  const register = async (user, pass, interests) => {
-    console.log("user is: " + user);
-    console.log("pass is:" + pass);
-    console.log("interests:" + interests);
-    console.log(
-      JSON.stringify({
-        email: user,
-        password: pass,
-        interests: interests,
-      })
-    );
+  const register = async (profile) => {
+    const {email, password} = profile
+    console.log(JSON.stringify(profile));
     const registerResponse = await fetch(
       apiKeys.SERVER_BASE_URL + "/register",
       {
@@ -89,11 +81,7 @@ export const AuthProvider = ({ children }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email: user,
-          password: pass,
-          interests: interests,
-        }),
+        body: JSON.stringify(profile),
       }
     );
 
@@ -105,9 +93,29 @@ export const AuthProvider = ({ children }) => {
       alert("This email is already taken!");
     } else {
       alert("User has been successfully registered!");
-      await login(user, pass);
+      await login(email, password);
     }
   };
+
+  const getCurrentUser = async () => {
+    const res = await fetch(
+      apiKeys.SERVER_BASE_URL + "/getUser",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "access-token": userToken,
+        },
+      }
+    );
+    if (res.status === 200) {
+      const json = await res.json()
+      const profile = json.profile;
+      profile.posts = [];
+      return profile
+    }
+    return null
+  }
 
   //useEffect to track if the jwt token is valid
   useEffect(() => {
@@ -157,6 +165,7 @@ export const AuthProvider = ({ children }) => {
         login: login,
         logout: logout,
         register: register,
+        getCurrentUser: getCurrentUser,
         display: display,
         setDisplay: setDisplay,
       }}

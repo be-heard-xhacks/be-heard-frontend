@@ -17,7 +17,6 @@ import dummyData from "../../assets/dummyData";
 import global from "../../styles.js";
 
 export default function EducateScreen(props) {
-  const { logout } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -93,7 +92,6 @@ export default function EducateScreen(props) {
           text="Today's Pick"
           style={global.h1}
         ></TextGradient>
-        <Button onPress={logout} title="Log Out" />
         <TouchableOpacity>
           <Image
             source={require("../../assets/bg.jpg")}

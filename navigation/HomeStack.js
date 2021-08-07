@@ -30,6 +30,7 @@ export default function HomeStack() {
             setIsProfile(true);
             // navigation.navigate("Profile");
           }}
+          hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
         >
           <FontAwesome name="user-circle" size={25} color="#B5B5B5" />
         </TouchableOpacity>

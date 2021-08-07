@@ -36,6 +36,38 @@ export default function EducateScreen() {
         </View>
         <Text style={global.tag}>Label</Text>
       </View>
+      <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate("Reading Schedule", {});
+              console.log("moved to reading schedule");
+            }}
+          >
+            <Text>Today's Pick</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate("Spotlighted");
+              console.log("moved to spotlighted");
+            }}
+          >
+            <Text>Spotlighted</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate("For You");
+              console.log("moved to for you");
+            }}
+          >
+            <Text>For You</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate("Headlines");
+              console.log("moved to headlines");
+            }}
+          >
+            <Text>Headlines</Text>
+          </TouchableOpacity>
     </View>
   );
 }

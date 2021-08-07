@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "../../styles.js";
 import { Text, TouchableOpacity, View, SafeAreaView, Button, TextInput } from "react-native";
-import { useNavigation } from '@react-navigation/native';
-import { useEffect } from "react/cjs/react.development";
+import { useNavigation } from "@react-navigation/native";
+import { useContext, useEffect } from "react/cjs/react.development";
+import { AuthContext } from "../../navigation/AuthProvider.js";
 
 import * as MailComposer from 'expo-mail-composer';
 
@@ -11,9 +12,10 @@ export default function EmailReps(props) {
   const [body, onChangeBody] = React.useState('')
 
   const navigation = useNavigation();
+  const { setDisplay } = useContext(AuthContext);
   useEffect(() => {
-    props.setDisplay(false)
-  });
+    setDisplay(false);
+  }, []);
 
   const emailReps = async () => {
     const available = await MailComposer.isAvailableAsync()
@@ -37,10 +39,12 @@ export default function EmailReps(props) {
     <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={() => {
-          props.setDisplay(true)
+          setDisplay(true);
           navigation.goBack();
         }}
-      ><Text>◂</Text></TouchableOpacity>
+      >
+        <Text>◂</Text>
+      </TouchableOpacity>
       <Text>Email Representatives</Text>
       <Text>Subject</Text>
       <TextInput

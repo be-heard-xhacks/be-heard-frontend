@@ -16,35 +16,30 @@ export default function EnactStack(props) {
         component={EnactScreen}
         options={{ header: () => null }}
       />
-      <Stack.Screen 
-        name="Create Spotlight" 
-        children={()=><CreateSpotlight 
-        setDisplay={props.setDisplay}/>}
-        options={{ header: () => null }} 
+      <Stack.Screen
+        name="Create Spotlight"
+        component={CreateSpotlight}
+        options={{ header: () => null }}
       />
-      <Stack.Screen 
-        name="Email Representatives" 
-        children={()=><EmailReps 
-        setDisplay={props.setDisplay}/>}
-        options={{ header: () => null }} 
+      <Stack.Screen
+        name="Email Representatives"
+        component={EmailReps}
+        options={{ header: () => null }}
       />
-      <Stack.Screen 
-        name="Sign Petitions" 
-        children={()=><SignPetitions 
-        setDisplay={props.setDisplay}/>}
-        options={{ header: () => null }} 
+      <Stack.Screen
+        name="Sign Petitions"
+        component={SignPetitions}
+        options={{ header: () => null }}
       />
-      <Stack.Screen 
-        name="Generate Linktree" 
-        children={()=><GenerateLinktree 
-        setDisplay={props.setDisplay}/>}
-        options={{ header: () => null }} 
+      <Stack.Screen
+        name="Generate Linktree"
+        component={GenerateLinktree}
+        options={{ header: () => null }}
       />
-      <Stack.Screen 
-        name="Generate Infographics" 
-        children={()=><GenerateInfo 
-        setDisplay={props.setDisplay}/>}
-        options={{ header: () => null }} 
+      <Stack.Screen
+        name="Generate Infographics"
+        component={GenerateInfo}
+        options={{ header: () => null }}
       />
     </Stack.Navigator>
   );

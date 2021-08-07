@@ -31,7 +31,8 @@ const setJWTToken = async (value) => {
 export const AuthProvider = ({ children }) => {
   const [userToken, setUserToken] = useState("");
   const [isValidToken, setIsValidToken] = useState(false);
-
+  const [display, setDisplay] = useState(true);
+  const [isProfile, setIsProfile] = useState(false);
   /*grab the token from storage when app first mounts, and attempt logging in thru
   our useEffect */
   useEffect(() => {
@@ -148,9 +149,13 @@ export const AuthProvider = ({ children }) => {
       value={{
         userToken,
         isValidToken,
+        isProfile: isProfile,
+        setIsProfile: setIsProfile,
         login: login,
         logout: logout,
         register: register,
+        display: display,
+        setDisplay: setDisplay,
       }}
     >
       {children}

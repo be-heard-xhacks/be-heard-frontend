@@ -7,6 +7,7 @@ import {
   Linking,
   Alert,
   ImageBackground,
+  ScrollView,
 } from "react-native";
 import InAppBrowser from "react-native-inappbrowser-reborn";
 import { LinearGradient } from "expo-linear-gradient";
@@ -29,20 +30,22 @@ export default function Article(props) {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <TouchableOpacity
-        onPress={() => {
-          setDisplay(true);
-          props.navigation.goBack();
-        }}
-      >
-        <Text>◂</Text>
-      </TouchableOpacity>
-      <Text>{article.title}</Text>
-      <Text>{article.summary ? displaySummary(article.summary) : ""}</Text>
-      <TouchableOpacity onPress={() => Linking.openURL(article.source)}>
-        <Text>Read More</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    <ScrollView>
+      <SafeAreaView style={{ flex: 1 }}>
+        <TouchableOpacity
+          onPress={() => {
+            setDisplay(true);
+            props.navigation.goBack();
+          }}
+        >
+          <Text>◂</Text>
+        </TouchableOpacity>
+        <Text>{article.title}</Text>
+        <Text>{article.summary ? displaySummary(article.summary) : ""}</Text>
+        <TouchableOpacity onPress={() => Linking.openURL(article.source)}>
+          <Text>Read More</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    </ScrollView>
   );
 }

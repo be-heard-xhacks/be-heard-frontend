@@ -37,5 +37,10 @@ export default StyleSheet.create({
   topSubtitle: {
     fontSize: 12,
     fontFamily: 'light'
+  },
+  input:{
+    height: 40,
+    borderWidth: 0.5,
+    padding: 10,
   }
 });

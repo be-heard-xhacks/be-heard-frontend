@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../navigation/AuthProvider";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Touchable } from "react-native";
 import { Text, View, Button, Image, TouchableOpacity, ScrollView } from "react-native";
 import TextGradient from "../../components/TextGradient";
 import SmallNews from "../../components/SmallNews";
+import BigNews from "../../components/BigNews";
 
 import global from "../../styles.js";
 
@@ -24,18 +25,20 @@ export default function EducateScreen(props) {
     <ScrollView>
       <View style={styles.section}>
         <TextGradient height={32} text="Today's Pick" style={global.h1}></TextGradient>
-        <Image
-          source={require('../../assets/bg.jpg')}
-          style={styles.todayImg}
-        ></Image>
-        <View style={styles.headline}>
-          <Text style={global.headline}>Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit</Text>
+        <TouchableOpacity>
           <Image
-            source={require('../../assets/source.png')}
-            style={global.srcImg}
+            source={require('../../assets/bg.jpg')}
+            style={styles.todayImg}
           ></Image>
-        </View>
-        <Text style={global.tag}>Label</Text>
+          <View style={styles.headline}>
+            <Text style={global.headline}>Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit</Text>
+            <Image
+              source={require('../../assets/source.png')}
+              style={global.srcImg}
+            ></Image>
+          </View>
+          <Text style={global.tag}>Label</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             props.navigation.navigate("Reading Schedule", {});
@@ -61,15 +64,20 @@ export default function EducateScreen(props) {
       </TouchableOpacity>
       </View>
 
-      
-      <TouchableOpacity
+      <View style={styles.section}>
+        <TextGradient height={32} text="For You" style={global.h1}></TextGradient>
+        <BigNews></BigNews>
+        <BigNews></BigNews>
+        <BigNews></BigNews>
+        <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("For You");
           console.log("moved to for you");
         }}
       >
-        <Text>For You</Text>
+        <Text style={global.navLabel}>See all ▸</Text>
       </TouchableOpacity>
+      </View>
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("Headlines");

@@ -3,13 +3,11 @@ import { SafeAreaView, StyleSheet, Text } from "react-native";
 import { AuthProvider } from "./AuthProvider";
 import NavigationStack from "./NavigationStack";
 
-import TextGradient from "../components/TextGradient";
 
 export default function Providers() {
   return (
     <AuthProvider>
       <SafeAreaView style={styles.container}>
-        <TextGradient height={32} text="Be Heard" style={styles.pageTitle}></TextGradient>
         <NavigationStack />
       </SafeAreaView>
     </AuthProvider>

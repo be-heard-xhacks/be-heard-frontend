@@ -8,6 +8,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  RefreshControl,
 } from "react-native";
 import TextGradient from "../../components/TextGradient";
 import SmallNews from "../../components/SmallNews";
@@ -16,9 +17,10 @@ import dummyData from "../../assets/dummyData";
 import global from "../../styles.js";
 
 export default function EducateScreen(props) {
-  const {logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   // useEffect(() => {
   //   setUserName(user.displayName);
@@ -26,7 +28,6 @@ export default function EducateScreen(props) {
   // }, []); //ComponentDidMount
 
   /* <Image style={styles.profileImage} source={{ uri: profilePic }} /> */
-   
 
   const [spotlights, setSpotlights] = useState(dummyData.spotlights);
   const [forYou, setForYou] = useState(dummyData.forYou);
@@ -71,16 +72,28 @@ export default function EducateScreen(props) {
       ));
   };
 
-  return (
-    <ScrollView>
-      <View style={styles.section}>
+  const wait = (timeout) => {
+    return new Promise((resolve) => setTimeout(resolve, timeout));
+  };
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+  return (
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+      <View style={styles.section}>
         <TextGradient
           height={32}
           text="Today's Pick"
           style={global.h1}
         ></TextGradient>
-        <Button onPress={logout} title="Log Out" /> 
+        <Button onPress={logout} title="Log Out" />
         <TouchableOpacity>
           <Image
             source={require("../../assets/bg.jpg")}

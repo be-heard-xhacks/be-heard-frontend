@@ -18,10 +18,10 @@ export default function EnactScreen(props) {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
 
-  // useEffect(() => {
-  //   setUserName(user.displayName);
-  //   setProfilePic(user.photoURL);
-  // }, []); //ComponentDidMount
+  const img1 = require("../../assets/representatives.jpg")
+  const img2 = require("../../assets/petitions.jpg")
+  const img3 = require("../../assets/linktree.jpg")
+  const img4 = require("../../assets/infographic.jpg")
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,7 +40,7 @@ export default function EnactScreen(props) {
             console.log("moved to email representatives");
           }}
         >
-        <EnactButton page="Email Representatives"></EnactButton>
+        <EnactButton page="Email Representatives" img={img1}></EnactButton>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -48,7 +48,7 @@ export default function EnactScreen(props) {
             console.log("moved to sign petitions");
           }}
         >
-        <EnactButton page="Sign Petitions"></EnactButton>
+        <EnactButton page="Sign Petitions" img={img2}></EnactButton>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -56,7 +56,7 @@ export default function EnactScreen(props) {
             console.log("moved to generate linktree");
           }}
         >
-        <EnactButton page="Generate Linktree"></EnactButton>
+        <EnactButton page="Generate Linktree" img={img3}></EnactButton>
         </TouchableOpacity>
         <TouchableOpacity
             onPress={() => {
@@ -64,7 +64,7 @@ export default function EnactScreen(props) {
               console.log("moved to generate infographics");
             }}
           >
-          <EnactButton page="Generate Infographics"></EnactButton>
+          <EnactButton page="Generate Infographics" img={img4}></EnactButton>
           </TouchableOpacity>
         </ScrollView>
     </SafeAreaView>

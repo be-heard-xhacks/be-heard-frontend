@@ -110,7 +110,10 @@ export const AuthProvider = ({ children }) => {
 
   //useEffect to track if the jwt token is valid
   useEffect(() => {
-    if (userToken) {
+    if (!userToken){
+      setIsValidToken(false);
+    }
+    else if (userToken && !isValidToken) {
       const attemptLoginJWT = async () => {
         const tokenStatusResponse = await fetch(
           apiKeys.SERVER_BASE_URL + "/validateToken",
@@ -139,9 +142,6 @@ export const AuthProvider = ({ children }) => {
       };
 
       attemptLoginJWT();
-    }
-    else {
-      setIsValidToken(false);
     }
   }, [userToken]);
 

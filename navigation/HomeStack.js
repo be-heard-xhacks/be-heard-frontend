@@ -6,8 +6,6 @@ import {View, StyleSheet} from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import TextGradient from "../components/TextGradient";
-import {View} from "react-native"
-import styles from "../styles";
 
 export default function HomeStack() {
   const Tab = createMaterialTopTabNavigator();

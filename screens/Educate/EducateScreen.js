@@ -9,7 +9,7 @@ import BigNews from "../../components/BigNews";
 import global from "../../styles.js";
 
 export default function EducateScreen(props) {
-  const { user, logout } = useContext(AuthContext);
+  const {logout } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
 
@@ -25,6 +25,7 @@ export default function EducateScreen(props) {
     <ScrollView>
       <View style={styles.section}>
         <TextGradient height={32} text="Today's Pick" style={global.h1}></TextGradient>
+        <Button title="Logout" onPress = {() => logout()}/>
         <TouchableOpacity>
           <Image
             source={require('../../assets/bg.jpg')}

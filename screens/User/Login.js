@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import global from "../../styles.js";
-import { Text, TouchableOpacity, View, SafeAreaView, TextInput } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+  TextInput,
+  Button,
+} from "react-native";
+
+import { AuthContext } from "../../navigation/AuthProvider.js";
 
 export default function Login(props) {
-    const [email, onChangeEmail] = React.useState("");
-    const [password, onChangePassword] = React.useState("");
+  const [email, onChangeEmail] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
+  const { login } = useContext(AuthContext);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
@@ -12,7 +22,9 @@ export default function Login(props) {
           props.navigation.navigate("Landing");
           console.log("moved to landing");
         }}
-      ><Text>◂</Text></TouchableOpacity>
+      >
+        <Text>◂</Text>
+      </TouchableOpacity>
       <Text>Login</Text>
       <TextInput
         style={global.input}
@@ -26,6 +38,8 @@ export default function Login(props) {
         value={password}
         placeholder="Password"
       />
+
+      <Button title="Log In" onPress={() => login(email, password)} />
     </SafeAreaView>
   );
 }

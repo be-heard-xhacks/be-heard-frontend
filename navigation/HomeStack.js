@@ -4,7 +4,7 @@ import EducateStack from "./EducateStack";
 import EnactStack from "./EnactStack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-``;
+
 
 export default function HomeStack() {
   const Tab = createMaterialTopTabNavigator();

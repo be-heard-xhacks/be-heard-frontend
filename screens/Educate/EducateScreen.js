@@ -15,12 +15,14 @@ import SmallNews from "../../components/SmallNews";
 import BigNews from "../../components/BigNews";
 import dummyData from "../../assets/dummyData";
 import global from "../../styles.js";
+import { HomeContext } from "../../navigation/HomeProvider";
 
 export default function EducateScreen(props) {
   const { logout } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
+  const { articles } = useContext(HomeContext); //NEWS API
 
   // useEffect(() => {
   //   setUserName(user.displayName);
@@ -29,9 +31,9 @@ export default function EducateScreen(props) {
 
   /* <Image style={styles.profileImage} source={{ uri: profilePic }} /> */
 
-  const [spotlights, setSpotlights] = useState(dummyData.spotlights);
-  const [forYou, setForYou] = useState(dummyData.forYou);
-  const [headlines, setHeadlines] = useState(dummyData.headlines);
+  const [spotlights, setSpotlights] = useState(dummyData.spotlights); //DATABASE
+  //const [forYou, setForYou] = useState(dummyData.forYou); //NEWS API
+  const [headlines, setHeadlines] = useState(dummyData.headlines); //DATABASE
 
   // create useEffect for each of these above
 
@@ -49,15 +51,19 @@ export default function EducateScreen(props) {
   };
 
   const generateForYou = (n) => {
-    return forYou
-      .slice(0, n)
-      .map((article) => (
-        <BigNews
-          article={article}
-          key={article.id}
-          navigation={props.navigation}
-        ></BigNews>
-      ));
+    if (!articles || articles.length < 1) return null;
+
+    return (
+      articles
+        // .slice(0, n)
+        .map((article) => (
+          <BigNews
+            article={article}
+            key={article.id}
+            navigation={props.navigation}
+          ></BigNews>
+        ))
+    );
   };
 
   const generateHeadliens = (n) => {
@@ -146,7 +152,7 @@ export default function EducateScreen(props) {
         {generateForYou(3)}
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate("For You", { list: forYou });
+            props.navigation.navigate("For You", { list: articles });
             console.log("moved to for you");
           }}
         >

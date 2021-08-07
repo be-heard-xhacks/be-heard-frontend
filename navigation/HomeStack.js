@@ -3,14 +3,25 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import EducateStack from "./EducateStack";
 import EnactStack from "./EnactStack";
 import Profile from "./ProfileStack";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import TextGradient from "../components/TextGradient";
 import { AuthContext } from "./AuthProvider";
 import { FontAwesome } from "@expo/vector-icons";
+import { HomeProvider } from "./HomeProvider";
 
-export default function HomeStack() {
+export default function WrappedHomeStack() {
+  return (
+    <HomeProvider>
+      <SafeAreaView style={styles.container}>
+        <HomeStack />
+      </SafeAreaView>
+    </HomeProvider>
+  );
+}
+
+export function HomeStack() {
   const Tab = createMaterialTopTabNavigator();
   const { display } = useContext(AuthContext);
   const { setIsProfile } = useContext(AuthContext);
@@ -19,7 +30,7 @@ export default function HomeStack() {
     <View style={styles.container}>
       <View style={styles.header}>
         <TextGradient
-          height={display ? 30 : 45}
+          height={display ? 35 : 45}
           text="Be Heard"
           style={[styles.pageTitle]}
         ></TextGradient>

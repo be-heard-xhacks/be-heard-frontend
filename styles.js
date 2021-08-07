@@ -45,10 +45,10 @@ export default StyleSheet.create({
   },
   back:{
     position: 'absolute',
-    top: 0,
+    top: -10,
     left: 10,
-    padding: 10,
-    height:50,
+    // padding: 10,
+    // height:50,
     // backgroundColor:'red'
   }
 });

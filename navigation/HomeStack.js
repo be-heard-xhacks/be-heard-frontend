@@ -16,13 +16,14 @@ export default function HomeStack() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TextGradient height={display ? 30:45} text="Be Heard" style={[styles.pageTitle,]}></TextGradient>
+        <TextGradient height={display ? 35:45} text="Be Heard" style={[styles.pageTitle,]}></TextGradient>
         <TouchableOpacity style={styles.userIcon}
           onPress={() => {
             // setDisplay(false)
             setIsProfile(true)
             // navigation.navigate("Profile");
           }}
+          hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
         >
           <FontAwesome name="user-circle" size={25} color="#B5B5B5"/>
         </TouchableOpacity>

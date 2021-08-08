@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react/cjs/react.development";
 import { AuthContext } from "../../navigation/AuthProvider.js";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { Ionicons } from "@expo/vector-icons";
+import global from "../../styles.js";
 
 
 export default function ReadingSchedule(props) {
@@ -30,7 +31,7 @@ export default function ReadingSchedule(props) {
         </TouchableOpacity>
         
       <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
-      <Text>Reading Schedule</Text>
+      <Text style={global.pageTitle}>Reading Schedule</Text>
       <View style={{ paddingTop: 50, flex: 1 }}>
         <Calendar
           // Initially visible month. Default = Date()

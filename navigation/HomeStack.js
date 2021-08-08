@@ -8,7 +8,10 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import TextGradient from "../components/TextGradient";
 import { AuthContext } from "./AuthProvider";
+import Header from "../components/Header";
+import TextGradient from "../components/TextGradient";
 import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { HomeProvider } from "./HomeProvider";
 
 export default function WrappedHomeStack() {
@@ -28,12 +31,24 @@ export function HomeStack() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TextGradient
-          height={display ? 35 : 45}
+      {display && <View style={styles.header}>
+      <TextGradient
+          height={30}
+          // width="70%"
           text="Be Heard"
           style={[styles.pageTitle]}
-        ></TextGradient>
+        ></TextGradient>  
+        {/* {false && <TouchableOpacity
+          onPress={() => {
+            
+          }}
+          style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
+          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+        >
+            <View>
+              <Ionicons name="chevron-back-outline" size={25} color="black" />
+            </View>
+        </TouchableOpacity>} */}
         <TouchableOpacity
           style={styles.userIcon}
           onPress={() => {
@@ -45,7 +60,8 @@ export function HomeStack() {
         >
           <FontAwesome name="user-circle" size={25} color="#B5B5B5" />
         </TouchableOpacity>
-      </View>
+      </View>}
+      {/* {display && <Header display={display}></Header>} */}
       <Tab.Navigator
         initialRouteName="Home"
         screenOptions={
@@ -77,17 +93,20 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontFamily: "boldfont",
     fontSize: 32,
-    marginTop: 5,
+    // marginTop: 10,
     // flex: 1,
   },
   userIcon: {
     position: "absolute",
     top: 3,
     right: 20,
+    flex: 1
   },
   header: {
+    marginTop: 10
     // flexDirection:'row',
     // justifyContent: 'space-between',
+    // alignContent:'flex-end',
     // backgroundColor: 'purple',
   },
 });

@@ -13,6 +13,11 @@ export default StyleSheet.create({
     fontSize: 16,
     fontFamily: 'medium',
   },
+  pageTitle: {
+    fontFamily: 'medium',
+    marginBottom:10, 
+    fontSize:20
+  },
   srcImg: {
     height: 12,
     width: 25,
@@ -42,13 +47,16 @@ export default StyleSheet.create({
     height: 40,
     borderWidth: 0.5,
     padding: 10,
+    marginVertical:10,
+    borderRadius: 5
   },
   back:{
     position: 'absolute',
-    top: -5,
+    top: 5,
     left: 10,
+
     // padding: 10,
-    // height:50,
+    height:50,
     // backgroundColor:'red'
   }
 });

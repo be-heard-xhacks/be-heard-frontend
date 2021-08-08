@@ -1,38 +1,39 @@
-import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../../navigation/AuthProvider";
-import { StyleSheet, Touchable } from "react-native";
+import React, { useState } from "react";
+import global from "../../styles.js";
+import TextGradient from "../../components/TextGradient.js";
 import {
   Text,
   View,
-  Button,
   Image,
   TouchableOpacity,
   ScrollView,
   RefreshControl,
+  StyleSheet,
 } from "react-native";
-import TextGradient from "../../components/TextGradient";
 import SmallNews from "../../components/SmallNews";
 import BigNews from "../../components/BigNews";
 import dummyData from "../../assets/dummyData";
 import global from "../../styles.js";
 import { HomeContext } from "../../navigation/HomeProvider";
+import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../../navigation/AuthProvider";
+import { useContext, useEffect } from "react/cjs/react.development";
 
 export default function EducateScreen(props) {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const { articles } = useContext(HomeContext); //NEWS API
+  const { setDisplay } = useContext(AuthContext);
+  useEffect(() => {
+    console.log(true)
+    setDisplay(true);
+  }, []);
 
-  // useEffect(() => {
-  //   setUserName(user.displayName);
-  //   setProfilePic(user.photoURL);
-  // }, []); //ComponentDidMount
-
-  /* <Image style={styles.profileImage} source={{ uri: profilePic }} /> */
-
-  const [spotlights, setSpotlights] = useState(dummyData.spotlights); //DATABASE
-  //const [forYou, setForYou] = useState(dummyData.forYou); //NEWS API
-  const [headlines, setHeadlines] = useState(dummyData.headlines); //DATABASE
+  const [refreshing, setRefreshing] = useState(false);
+  const [inChild, setInChild] = useState(false);
+  const [spotlights, setSpotlights] = useState(dummyData.spotlights);
+  const [headlines, setHeadlines] = useState(dummyData.headlines);
 
   // create useEffect for each of these above
 
@@ -113,6 +114,8 @@ export default function EducateScreen(props) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            setDisplay(false);
+            setInChild(true);
             props.navigation.navigate("Reading Schedule", {});
             console.log("moved to reading schedule");
           }}
@@ -130,6 +133,9 @@ export default function EducateScreen(props) {
         {generateSpotlights(3)}
         <TouchableOpacity
           onPress={() => {
+            setDisplay(false);
+            console.log(false);
+            setInChild(true);
             props.navigation.navigate("Spotlighted", { list: spotlights });
             console.log("moved to spotlighted");
           }}
@@ -147,6 +153,9 @@ export default function EducateScreen(props) {
         {generateForYou(3)}
         <TouchableOpacity
           onPress={() => {
+            setDisplay(false);
+            setInChild(true);
+            console.log(false);
             props.navigation.navigate("For You", { list: articles });
             console.log("moved to for you");
           }}
@@ -164,6 +173,9 @@ export default function EducateScreen(props) {
         {generateHeadliens(3)}
         <TouchableOpacity
           onPress={() => {
+            setDisplay(false);
+            setInChild(true);
+            console.log(false);
             props.navigation.navigate("Headlines", { list: headlines });
             console.log("moved to headlines");
           }}

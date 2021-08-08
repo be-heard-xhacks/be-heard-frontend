@@ -1,54 +1,77 @@
 import React, { useEffect } from "react";
+import global from "../../styles.js";
+import { AuthContext } from "../../navigation/AuthProvider";
+import { useContext } from "react/cjs/react.development";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
 import {
   Text,
   TouchableOpacity,
   View,
   SafeAreaView,
   Linking,
-  Alert,
-  ImageBackground,
   ScrollView,
-  StyleSheet,
+  StyleSheet
 } from "react-native";
-import InAppBrowser from "react-native-inappbrowser-reborn";
-import { LinearGradient } from "expo-linear-gradient";
-import { AuthContext } from "../../navigation/AuthProvider";
-import { useContext } from "react/cjs/react.development";
+
 
 export default function Article(props) {
   const { article } = props.route.params;
-  const { setDisplay } = useContext(AuthContext);
+  const { display, setDisplay } = useContext(AuthContext);
+  const { setIsProfile } = useContext(AuthContext);
+
+  const navigation = useNavigation();
   useEffect(() => {
+    console.log(false);
     setDisplay(false);
   }, []);
 
   return (
-    <ScrollView>
-      <SafeAreaView style={{ flex: 1 }}>
-        <TouchableOpacity
+   <ScrollView style={{backgroundColor:'white'}}>
+      <TouchableOpacity
           onPress={() => {
-            setDisplay(true);
-            props.navigation.goBack();
+            setDisplay(!display);
+            console.log(!display);
+            navigation.goBack();
           }}
+          style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
+          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
         >
-          <Text>◂</Text>
+            <View>
+              <Ionicons name="chevron-back-outline" size={25} color="black" />
+            </View>
         </TouchableOpacity>
-        <Text>{article.title}</Text>
+       
+      <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
+        <Text style={global.pageTitle}>{article.title}</Text>
         <ImageBackground
           source={{ uri: article.image }}
           resizeMode="cover"
           style={styles.image}
         ></ImageBackground>
         <Text>{article.summary ? article.summary : ""}</Text>
-        <TouchableOpacity onPress={() => Linking.openURL(article.link)}>
-          <Text>Read More</Text>
-        </TouchableOpacity>
+    <   TouchableOpacity onPress={() => 
+          Linking.openURL(article.source).catch(err => {
+            console.error("Failed opening page because: ", err)
+            alert('Failed to open page')
+          })}>
+          <Text style={[global.tag, {alignSelf:'center', marginVertical: 10}]}>Read More</Text>
+          </TouchableOpacity>        
       </SafeAreaView>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+
+  header: {
+    marginTop: 10
+    // flexDirection:'row',
+    // justifyContent: 'space-between',
+    // alignContent:'flex-end',
+    // backgroundColor: 'purple',
+  },
   image: {
     // height:100,
     borderRadius: 5,

@@ -6,7 +6,6 @@ import ProfileStack from "./ProfileStack";
 import AuthStack from "./AuthStack";
 import { AuthContext } from "./AuthProvider";
 import { ActivityIndicator } from "react-native";
-// import firebase from "firebase";
 
 export default function NavigationStack() {
   const { isValidToken, isProfile } = useContext(AuthContext);
@@ -17,27 +16,11 @@ export default function NavigationStack() {
     return <ActivityIndicator />;
   }
 
-  function decide() {
-    if(true){
-      if(isProfile){
-        console.log("profile")
-        return <ProfileStack/>
-      }
-      else
-       return <HomeStack/>
-    }
-    else {
-       return <AuthStack/>
-    }
-  }
-
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
+      {/* {true ? isProfile ? <ProfileStack/>:<HomeStack /> : <AuthStack />} */}
       {isValidToken ? isProfile ? <ProfileStack/>:<HomeStack /> : <AuthStack />}
-      {/* {decide()} */}
-      {/* <HomeStack /> */}
-
     </NavigationContainer>
   );
 }

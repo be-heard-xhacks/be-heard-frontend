@@ -55,6 +55,7 @@ export default function Register(props) {
       lastName: lastName,
       interests: selection,
     }
+    console.log(profile)
     register(profile)
   }
 
@@ -79,9 +80,7 @@ export default function Register(props) {
           {displayMessages(interests)}
         </View>
         <TouchableOpacity
-        onPress={() => {
-          handleRegister
-        }}
+        onPress={handleRegister}
       ><Text style={styles.button}>Submit Interests</Text></TouchableOpacity>
       </View>
     </SafeAreaView>

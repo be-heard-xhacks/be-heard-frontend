@@ -26,7 +26,6 @@ export const HomeProvider = ({ children }) => {
         }
       );
       const newInterests = await newInterestsResponse.json();
-      //console.log("user's interests are: " + Object.entries(newInterests));
       const interestArray = newInterests.interests;
       console.log(interestArray);
       console.log("Interest 1 is: " + interestArray[0]);
@@ -53,8 +52,10 @@ export const HomeProvider = ({ children }) => {
             },
           }
         );
-        const newArticles = await newArticlesResponse.json();
+        const newArticlesMessage = await newArticlesResponse.json();
+        const newArticles = newArticlesMessage.data;
         setArticles(newArticles);
+        console.log("New articles are: ") + newArticles;
       }
     };
     grabArticles();

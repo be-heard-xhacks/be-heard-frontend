@@ -34,20 +34,26 @@ export default function ForYou(props) {
   };
 
   return (
-    <ScrollView style={{backgroundColor:'white'}}>
+    <ScrollView style={{ backgroundColor: "white" }}>
       <TouchableOpacity
-          onPress={() => {
-            setDisplay(true);
-            navigation.goBack();
-          }}
-          style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
-          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
-        >
-            <View>
-              <Ionicons name="chevron-back-outline" size={25} color="black" />
-            </View>
-        </TouchableOpacity>
-        
+        onPress={() => {
+          setDisplay(true);
+          navigation.goBack();
+        }}
+        style={{
+          height: 40,
+          width: 40,
+          position: "absolute",
+          top: 0,
+          left: 10,
+        }}
+        hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+      >
+        <View>
+          <Ionicons name="chevron-back-outline" size={25} color="black" />
+        </View>
+      </TouchableOpacity>
+
       <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
         <Text style={global.pageTitle}>For You</Text>
         {generateList()}

@@ -68,7 +68,11 @@ export default function BigNews(props) {
               <Text
                 style={[global.tag, , { color: "white", borderColor: "white" }]}
               >
-                {props.article.interest ? props.article.interest : "Sponsored"}
+                {props.article.interest
+                  ? props.article.interest
+                  : props.spotlight
+                  ? "Sponsored"
+                  : "Headline"}
               </Text>
             </View>
           </LinearGradient>

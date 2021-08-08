@@ -22,7 +22,7 @@ export default function Headlines(props) {
   }, []);
 
   const generateList = () => {
-    return list.map((article) => (
+    return list[0].map((article) => (
       <BigNews
         article={article}
         key={article.id}

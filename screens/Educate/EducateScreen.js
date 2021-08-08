@@ -35,7 +35,6 @@ export default function EducateScreen(props) {
   // create useEffect for each of these above
 
   const generateSpotlights = (n) => {
-    console.log(spotlights);
     if (!spotlights || spotlights.length < 1) return null;
     return spotlights
       .slice(0, n)
@@ -63,7 +62,7 @@ export default function EducateScreen(props) {
   };
 
   const generateHeadlines = (n) => {
-    return headlines
+    return headlines[0]
       .slice(0, n)
       .map((article) => (
         <SmallNews

@@ -22,6 +22,7 @@ export default function Register(props) {
   const interests = ['Feminism', 'Politics', 'LGBTQ', 'Economics', 'Tech Equity',
   'Education','Racial Justice','International','Environment',]
   const [selection, setSelection] = React.useState([])
+  const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
   
   const updateSelection = (choice) => {
     if (selection.includes(choice)) {
@@ -43,6 +44,18 @@ export default function Register(props) {
       onPress={() => updateSelection(item)}>{item}</Text>
   })
 
+  const handleNext = () => {
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email!")
+      return;
+    }
+    if (email && password && firstName && lastName) {
+      setRegistered(true)
+    } else {
+      alert('Please fill out all fields.')
+    }
+  }
+
   const handleRegister = () => {
     if (selection.length === 0) {
       alert("Must select at least 1 interest!");
@@ -55,6 +68,7 @@ export default function Register(props) {
       lastName: lastName,
       interests: selection,
     }
+    console.log(profile)
     register(profile)
   }
 
@@ -79,9 +93,7 @@ export default function Register(props) {
           {displayMessages(interests)}
         </View>
         <TouchableOpacity
-        onPress={() => {
-          handleRegister
-        }}
+        onPress={handleRegister}
       ><Text style={styles.button}>Submit Interests</Text></TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -128,9 +140,7 @@ export default function Register(props) {
       />
 
       <TouchableOpacity
-        onPress={() => {
-          setRegistered(true)
-        }}
+        onPress={handleNext}
       ><Text style={styles.button}>Register</Text></TouchableOpacity>
       </View>
     </SafeAreaView>

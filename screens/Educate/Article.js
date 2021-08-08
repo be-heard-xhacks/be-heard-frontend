@@ -13,14 +13,12 @@ import {
   Linking,
   ScrollView,
   StyleSheet,
-  ImageBackground
+  ImageBackground,
 } from "react-native";
 
-
 export default function Article(props) {
-  
   const { article } = props.route.params;
-  console.log(article)
+  console.log(article);
   const { display, setDisplay } = useContext(AuthContext);
   const { setIsProfile } = useContext(AuthContext);
 
@@ -30,29 +28,35 @@ export default function Article(props) {
     setDisplay(false);
   }, []);
 
-  const inChild = props.route.params.inChild
+  const inChild = props.route.params.inChild;
 
-  if(inChild)console.log("i'm in a child!")
-  else console.log("i'm not in a child")
+  if (inChild) console.log("i'm in a child!");
+  else console.log("i'm not in a child");
 
   return (
-   <ScrollView style={{backgroundColor:'white'}}>
+    <ScrollView style={{ backgroundColor: "white" }}>
       <TouchableOpacity
-          onPress={() => {
-            if(!inChild) {
-              setDisplay(!display);
-              console.log(!display);
-            }
-            navigation.goBack();
-          }}
-          style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
-          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
-        >
-            <View>
-              <Ionicons name="chevron-back-outline" size={25} color="black" />
-            </View>
-        </TouchableOpacity>
-       
+        onPress={() => {
+          if (!inChild) {
+            setDisplay(!display);
+            console.log(!display);
+          }
+          navigation.goBack();
+        }}
+        style={{
+          height: 40,
+          width: 40,
+          position: "absolute",
+          top: 0,
+          left: 10,
+        }}
+        hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+      >
+        <View>
+          <Ionicons name="chevron-back-outline" size={25} color="black" />
+        </View>
+      </TouchableOpacity>
+
       <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
         <Text style={global.pageTitle}>{article.title}</Text>
         <ImageBackground
@@ -62,23 +66,29 @@ export default function Article(props) {
           resizeMode="cover"
           style={styles.image}
         ></ImageBackground>
-        <Text>{article.summary ? article.summary : ""}</Text>
-    <   TouchableOpacity onPress={() => 
-          Linking.openURL(article.link).catch(err => {
-            console.error("Failed opening page because: ", err)
-            alert('Failed to open page')
-          })}>
-          <Text style={[global.tag, {alignSelf:'center', marginVertical: 10}]}>Read More</Text>
-          </TouchableOpacity>        
+        <Text>{article.summary ? article.summary : article.sentences}</Text>
+        <TouchableOpacity
+          onPress={() =>
+            Linking.openURL(article.link).catch((err) => {
+              console.error("Failed opening page because: ", err);
+              alert("Failed to open page");
+            })
+          }
+        >
+          <Text
+            style={[global.tag, { alignSelf: "center", marginVertical: 10 }]}
+          >
+            Read More
+          </Text>
+        </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-
   header: {
-    marginTop: 10
+    marginTop: 10,
     // flexDirection:'row',
     // justifyContent: 'space-between',
     // alignContent:'flex-end',
@@ -90,8 +100,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     height: 160,
     // width: 160,
-    alignSelf:'stretch',
-    marginVertical: 20
+    alignSelf: "stretch",
+    marginVertical: 20,
     // flex: 1,
     // marginLeft: 10
   },

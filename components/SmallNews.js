@@ -14,14 +14,17 @@ export default function SmallNews(props) {
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        props.navigation.navigate("Article", { article: props.article, inChild:props.inChild });
+        props.navigation.navigate("Article", {
+          article: props.article,
+          inChild: props.inChild,
+        });
         console.log("moved to article");
       }}
     >
       <View style={styles.text}>
         {props.spotlight ? (
           <Text style={global.topSubtitle}>
-            Spotlighted by {props.article.spotlightAuthor}
+            Spotlighted by {props.article.author}
           </Text>
         ) : (
           <View style={styles.top}>
@@ -42,7 +45,9 @@ export default function SmallNews(props) {
             style={global.srcImg}
           ></Image> */}
         {props.spotlight && (
-          <Text style={global.tag}>{props.article.label}</Text>
+          <Text style={global.tag}>
+            {props.article.label ? props.article.label : "Sponsored"}
+          </Text>
         )}
       </View>
       <Image

@@ -22,20 +22,21 @@ export default function EducateScreen(props) {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
-  const { articles, headlines } = useContext(HomeContext); //NEWS API
+  const { articles, headlines, spotlights } = useContext(HomeContext); //NEWS API
   const { setDisplay } = useContext(AuthContext);
   useEffect(() => {
-    console.log(true)
+    console.log(true);
     setDisplay(true);
   }, []);
 
   const [inChild, setInChild] = useState(false);
-  const [spotlights, setSpotlights] = useState(dummyData.spotlights);
   // const [headlines, setHeadlines] = useState(dummyData.headlines);
 
   // create useEffect for each of these above
 
   const generateSpotlights = (n) => {
+    console.log(spotlights);
+    if (!spotlights || spotlights.length < 1) return null;
     return spotlights
       .slice(0, n)
       .map((article) => (

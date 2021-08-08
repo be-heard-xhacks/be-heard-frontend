@@ -8,6 +8,7 @@ export const HomeProvider = ({ children }) => {
   const [articles, setArticles] = useState([]);
   const { userToken } = useContext(AuthContext);
   const [interests, setInterests] = useState([]);
+  const [headlines, setHeadlines] = useState([]);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -33,6 +34,30 @@ export const HomeProvider = ({ children }) => {
     } else {
       console.log("Initial");
       setInterests([]);
+    }
+  };
+
+  useEffect(() => {
+    updateHeadlines();
+  }, [user])
+  const updateHeadlines = async () => {
+    if (userToken) {
+      const res = await fetch(
+        apiKeys.SERVER_BASE_URL + "/getTrending",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "access-token": userToken,
+          },
+        }
+      );
+      const json = await res.json();
+      const headlineResponse = json.data;
+      setHeadlines(headlineResponse);
+    } else {
+      console.log("Initial");
+      setHeadlines([]);
     }
   };
 
@@ -67,6 +92,8 @@ export const HomeProvider = ({ children }) => {
       value={{
         interests,
         updateInterests,
+        headlines,
+        updateHeadlines,
         articles,
         user,
       }}

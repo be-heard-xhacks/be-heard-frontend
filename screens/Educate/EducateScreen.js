@@ -22,7 +22,7 @@ export default function EducateScreen(props) {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
-  const { articles } = useContext(HomeContext); //NEWS API
+  const { articles, headlines } = useContext(HomeContext); //NEWS API
   const { setDisplay } = useContext(AuthContext);
   useEffect(() => {
     console.log(true)
@@ -31,7 +31,7 @@ export default function EducateScreen(props) {
 
   const [inChild, setInChild] = useState(false);
   const [spotlights, setSpotlights] = useState(dummyData.spotlights);
-  const [headlines, setHeadlines] = useState(dummyData.headlines);
+  // const [headlines, setHeadlines] = useState(dummyData.headlines);
 
   // create useEffect for each of these above
 

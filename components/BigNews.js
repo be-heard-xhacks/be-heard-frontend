@@ -33,7 +33,7 @@ export default function BigNews(props) {
         }}
       >
         <ImageBackground
-          source={props.article.image}
+          source={props.article.img}
           resizeMode="cover"
           style={styles.image}
         >
@@ -51,7 +51,7 @@ export default function BigNews(props) {
                 ></Image>
                 <Text
                   style={[global.topSubtitle, { color: "white" }]}
-                >{`  •  ${props.article.hr} hours ago`}</Text>
+                >{`  •  ${props.article.time} hours ago`}</Text>
               </View>
               <Text
                 style={[global.headline, styles.spacing, , { color: "white" }]}
@@ -61,7 +61,7 @@ export default function BigNews(props) {
               <Text
                 style={[global.tag, , { color: "white", borderColor: "white" }]}
               >
-                {props.article.label}
+                {props.article.interest}
               </Text>
             </View>
           </LinearGradient>

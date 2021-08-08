@@ -9,26 +9,41 @@ export const HomeProvider = ({ children }) => {
   const { userToken } = useContext(AuthContext);
   const [interests, setInterests] = useState([]);
   const [user, setUser] = useState(null);
-  console.log("User token from home provider is: " + userToken);
 
+  useEffect(() => {
+    updateInterests();
+  }, [user]);
   const updateInterests = async () => {
     if (userToken) {
-      const interests = await fetch(apiKeys.SERVER_BASE_URL + "/getInterests", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "access-token": userToken,
-        },
-      });
-      setInterests(interests);
-    } else setInterests([]);
+      const newInterestsResponse = await fetch(
+        apiKeys.SERVER_BASE_URL + "/getInterests",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "access-token": userToken,
+          },
+        }
+      );
+      const newInterests = await newInterestsResponse.json();
+      //console.log("user's interests are: " + Object.entries(newInterests));
+      const interestArray = newInterests.interests;
+      console.log(interestArray);
+      console.log("Interest 1 is: " + interestArray[0]);
+      setInterests(interestArray);
+    } else {
+      console.log("Initial");
+      setInterests([]);
+    }
   };
 
   useEffect(() => {
     const grabArticles = async () => {
-      console.log("Fetching articles...");
-      if (userToken && interests) {
-        const newArticles = await fetch(
+      console.log("Articles is: ");
+      if (userToken && interests.length > 0) {
+        console.log("Interests are: " + interests);
+        console.log("Fetching articles...");
+        const newArticlesResponse = await fetch(
           apiKeys.SERVER_BASE_URL + "/getArticles",
           {
             method: "GET",
@@ -38,6 +53,7 @@ export const HomeProvider = ({ children }) => {
             },
           }
         );
+        const newArticles = await newArticlesResponse.json();
         setArticles(newArticles);
       }
     };

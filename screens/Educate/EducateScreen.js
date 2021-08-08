@@ -52,18 +52,15 @@ export default function EducateScreen(props) {
 
   const generateForYou = (n) => {
     if (!articles || articles.length < 1) return null;
-
-    return (
-      articles
-        // .slice(0, n)
-        .map((article) => (
-          <BigNews
-            article={article}
-            key={article.id}
-            navigation={props.navigation}
-          ></BigNews>
-        ))
-    );
+    return articles
+      .slice(0, n)
+      .map((article) => (
+        <BigNews
+          article={article}
+          key={article.id}
+          navigation={props.navigation}
+        ></BigNews>
+      ));
   };
 
   const generateHeadliens = (n) => {

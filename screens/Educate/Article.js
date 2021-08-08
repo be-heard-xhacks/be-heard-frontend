@@ -57,13 +57,14 @@ export default function Article(props) {
         <Text style={global.pageTitle}>{article.title}</Text>
         <ImageBackground
           // source={{ uri: article.image }}
-          source={require("../../assets/bg.jpg")}
+          source={article.img}
+          // source={require("../../assets/bg.jpg")}
           resizeMode="cover"
           style={styles.image}
         ></ImageBackground>
         <Text>{article.summary ? article.summary : ""}</Text>
     <   TouchableOpacity onPress={() => 
-          Linking.openURL(article.source).catch(err => {
+          Linking.openURL(article.link).catch(err => {
             console.error("Failed opening page because: ", err)
             alert('Failed to open page')
           })}>
@@ -88,7 +89,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     overflow: "hidden",
     height: 160,
-    width: 160,
+    // width: 160,
+    alignSelf:'stretch',
+    marginVertical: 20
     // flex: 1,
     // marginLeft: 10
   },

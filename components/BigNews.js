@@ -24,6 +24,7 @@ import { LinearGradient } from "expo-linear-gradient";
 */
 
 export default function BigNews(props) {
+  // console.log(props.article.image)
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -34,6 +35,7 @@ export default function BigNews(props) {
       >
         <ImageBackground
           // source={{ uri: props.article.image }}
+          // source={props.article.image}
           source={require("../assets/bg.jpg")}
           resizeMode="cover"
           style={styles.image}

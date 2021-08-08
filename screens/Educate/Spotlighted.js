@@ -1,13 +1,13 @@
 import React from "react";
 import global from "../../styles.js";
-
 import {
   Text,
   TouchableOpacity,
-  View,
   SafeAreaView,
   ScrollView,
+  View
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useContext, useEffect } from "react/cjs/react.development";
 import { AuthContext } from "../../navigation/AuthProvider.js";
@@ -33,16 +33,20 @@ export default function Spotlighted(props) {
 
   return (
     <ScrollView style={{backgroundColor:'white'}}>
-      <SafeAreaView style={{ flex: 1, margin: 20 }}>
-        
-        <TouchableOpacity
+      <TouchableOpacity
           onPress={() => {
             setDisplay(true);
             navigation.goBack();
           }}
+          style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
+          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
         >
-          <Text>◂</Text>
+            <View>
+              <Ionicons name="chevron-back-outline" size={25} color="black" />
+            </View>
         </TouchableOpacity>
+        
+      <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
         <Text style={global.pageTitle}>Spotlighted</Text>
         {generateList()}
       </SafeAreaView>

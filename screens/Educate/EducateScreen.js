@@ -1,33 +1,32 @@
-import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../../navigation/AuthProvider";
-import { StyleSheet, Touchable } from "react-native";
+import React, { useState } from "react";
+import global from "../../styles.js";
+import TextGradient from "../../components/TextGradient.js";
 import {
   Text,
   View,
-  Button,
   Image,
   TouchableOpacity,
   ScrollView,
   RefreshControl,
+  StyleSheet,
 } from "react-native";
-import TextGradient from "../../components/TextGradient";
 import SmallNews from "../../components/SmallNews";
 import BigNews from "../../components/BigNews";
 import dummyData from "../../assets/dummyData";
-import global from "../../styles.js";
+
+import { useNavigation } from "@react-navigation/native";
+import { AuthContext } from "../../navigation/AuthProvider";
+import { useContext, useEffect } from "react/cjs/react.development";
 
 export default function EducateScreen(props) {
-  const [userName, setUserName] = useState("");
-  const [profilePic, setProfilePic] = useState(null);
+  const { setDisplay } = useContext(AuthContext);
+  useEffect(() => {
+    console.log(true)
+    setDisplay(true);
+  }, []);
+
   const [refreshing, setRefreshing] = useState(false);
-
-  // useEffect(() => {
-  //   setUserName(user.displayName);
-  //   setProfilePic(user.photoURL);
-  // }, []); //ComponentDidMount
-
-  /* <Image style={styles.profileImage} source={{ uri: profilePic }} /> */
-
+  const [inChild, setInChild] = useState(false);
   const [spotlights, setSpotlights] = useState(dummyData.spotlights);
   const [forYou, setForYou] = useState(dummyData.forYou);
   const [headlines, setHeadlines] = useState(dummyData.headlines);
@@ -110,6 +109,8 @@ export default function EducateScreen(props) {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            setDisplay(false);
+            setInChild(true);
             props.navigation.navigate("Reading Schedule", {});
             console.log("moved to reading schedule");
           }}
@@ -127,6 +128,9 @@ export default function EducateScreen(props) {
         {generateSpotlights(3)}
         <TouchableOpacity
           onPress={() => {
+            setDisplay(false);
+            console.log(false);
+            setInChild(true);
             props.navigation.navigate("Spotlighted", { list: spotlights });
             console.log("moved to spotlighted");
           }}
@@ -144,6 +148,9 @@ export default function EducateScreen(props) {
         {generateForYou(3)}
         <TouchableOpacity
           onPress={() => {
+            setDisplay(false);
+            setInChild(true);
+            console.log(false);
             props.navigation.navigate("For You", { list: forYou });
             console.log("moved to for you");
           }}
@@ -161,6 +168,9 @@ export default function EducateScreen(props) {
         {generateHeadliens(3)}
         <TouchableOpacity
           onPress={() => {
+            setDisplay(false);
+            setInChild(true);
+            console.log(false);
             props.navigation.navigate("Headlines", { list: headlines });
             console.log("moved to headlines");
           }}

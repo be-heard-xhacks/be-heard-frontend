@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import global from "../../styles.js";
+import { AuthContext } from "../../navigation/AuthProvider";
+import { useContext, useEffect } from "react/cjs/react.development";
+import { Ionicons } from "@expo/vector-icons";
 import {
   Text,
   TouchableOpacity,
-  View,
   SafeAreaView,
   ScrollView,
+  View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useContext, useEffect } from "react/cjs/react.development";
-import { AuthContext } from "../../navigation/AuthProvider.js";
 import SmallNews from "../../components/SmallNews";
 
 export default function ForYou(props) {
@@ -33,15 +34,20 @@ export default function ForYou(props) {
 
   return (
     <ScrollView style={{backgroundColor:'white'}}>
-      <SafeAreaView style={{ flex: 1, margin: 20 }}>
-        <TouchableOpacity
+      <TouchableOpacity
           onPress={() => {
             setDisplay(true);
             navigation.goBack();
           }}
+          style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
+          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
         >
-          <Text>◂</Text>
+            <View>
+              <Ionicons name="chevron-back-outline" size={25} color="black" />
+            </View>
         </TouchableOpacity>
+        
+      <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
         <Text style={global.pageTitle}>For You</Text>
         {generateList()}
       </SafeAreaView>

@@ -8,6 +8,7 @@ import {
   Alert,
   ImageBackground,
   ScrollView,
+  StyleSheet,
 } from "react-native";
 import InAppBrowser from "react-native-inappbrowser-reborn";
 import { LinearGradient } from "expo-linear-gradient";
@@ -21,14 +22,6 @@ export default function Article(props) {
     setDisplay(false);
   }, []);
 
-  const displaySummary = (summary) => {
-    return summary.map((sentence) => (
-      <View key={sentence} style={{ padding: 10 }}>
-        <Text>{sentence}</Text>
-      </View>
-    ));
-  };
-
   return (
     <ScrollView>
       <SafeAreaView style={{ flex: 1 }}>
@@ -41,11 +34,37 @@ export default function Article(props) {
           <Text>◂</Text>
         </TouchableOpacity>
         <Text>{article.title}</Text>
-        <Text>{article.summary ? displaySummary(article.summary) : ""}</Text>
-        <TouchableOpacity onPress={() => Linking.openURL(article.source)}>
+        <ImageBackground
+          source={{ uri: article.image }}
+          resizeMode="cover"
+          style={styles.image}
+        ></ImageBackground>
+        <Text>{article.summary ? article.summary : ""}</Text>
+        <TouchableOpacity onPress={() => Linking.openURL(article.link)}>
           <Text>Read More</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    // height:100,
+    borderRadius: 5,
+    overflow: "hidden",
+    height: 160,
+    width: 160,
+    // flex: 1,
+    // marginLeft: 10
+  },
+  container: {
+    flex: 1,
+    marginRight: 10,
+    borderRadius: 5,
+  },
+  text: {
+    padding: 20,
+    alignItems: "center",
+  },
+});

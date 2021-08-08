@@ -33,7 +33,7 @@ export default function BigNews(props) {
         }}
       >
         <ImageBackground
-          source={props.article.img}
+          source={{ uri: props.article.image }}
           resizeMode="cover"
           style={styles.image}
         >

@@ -27,6 +27,7 @@ export default function ForYou(props) {
         spotlight={false}
         article={article}
         key={article.id}
+        inChild={true}
         navigation={props.navigation}
       ></SmallNews>
     ));

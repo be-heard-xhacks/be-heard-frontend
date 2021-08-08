@@ -26,6 +26,7 @@ export default function Headlines(props) {
       <BigNews
         article={article}
         key={article.id}
+        inChild={true}
         navigation={props.navigation}
       ></BigNews>
     ));

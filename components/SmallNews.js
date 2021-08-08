@@ -14,7 +14,7 @@ export default function SmallNews(props) {
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        props.navigation.navigate("Article", { article: props.article });
+        props.navigation.navigate("Article", { article: props.article, inChild:props.inChild });
         console.log("moved to article");
       }}
     >
@@ -46,7 +46,8 @@ export default function SmallNews(props) {
         )}
       </View>
       <Image
-        source={{ uri: props.article.image }}
+        // source={{ uri: props.article.image }}
+        source={require("../assets/bg.jpg")}
         resizeMode="cover"
         style={styles.img}
       ></Image>

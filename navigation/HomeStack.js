@@ -6,7 +6,6 @@ import Profile from "./ProfileStack";
 import { View, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import TextGradient from "../components/TextGradient";
 import { AuthContext } from "./AuthProvider";
 import Header from "../components/Header";
 import TextGradient from "../components/TextGradient";

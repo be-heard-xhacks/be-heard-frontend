@@ -62,6 +62,7 @@ export default function EducateScreen(props) {
   };
 
   const generateHeadlines = (n) => {
+    if (!headlines || headlines.length < 1) return null;
     return headlines[0]
       .slice(0, n)
       .map((article) => (

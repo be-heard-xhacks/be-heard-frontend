@@ -10,6 +10,12 @@ import {
 import global from "../styles.js";
 
 export default function SmallNews(props) {
+  const findTime = (utc) => {
+    let a = new Date(utc);
+    let b = new Date();
+    return Math.ceil(Math.abs(a - b) / 36e5);
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -35,7 +41,7 @@ export default function SmallNews(props) {
             ></Image>
             <Text style={[global.topSubtitle]}>{`  •  ${
               props.article.time
-                ? props.article.time
+                ? findTime(props.article.time)
                 : Math.ceil(Math.random(5) * 5)
             } hours ago`}</Text>
           </View>

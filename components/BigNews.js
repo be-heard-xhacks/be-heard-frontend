@@ -24,6 +24,11 @@ import { LinearGradient } from "expo-linear-gradient";
 */
 
 export default function BigNews(props) {
+  const findTime = (utc) => {
+    let a = new Date(utc);
+    let b = new Date();
+    return Math.ceil(Math.abs(a - b) / 36e5);
+  };
   // console.log(props.article.image)
   return (
     <View style={styles.container}>
@@ -57,7 +62,9 @@ export default function BigNews(props) {
                   style={global.srcImg}
                 ></Image>
                 <Text style={[global.topSubtitle, { color: "white" }]}>{`  •  ${
-                  props.article.time ? props.article.time : 2
+                  props.article.time
+                    ? findTime(props.article.time)
+                    : Math.ceil(Math.random(4) * 5)
                 } hours ago`}</Text>
               </View>
               <Text

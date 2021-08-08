@@ -137,6 +137,28 @@ export default function GenerateInfo(props) {
     });
   };
 
+  const { userToken } = useContext(AuthContext);
+  const sendInfograph = async () => {
+    console.log("sending infographic");
+    const response = await fetch(
+      apiKeys.SERVER_BASE_URL + "/storeInfographic",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "access-token": userToken,
+        },
+        body: JSON.stringify({
+          title: title,
+          sentences: sentences,
+          sponsored: true,
+        }),
+      }
+    );
+    const responseData = await response.json();
+    console.log(responseData.message);
+  };
+
   if (editing)
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -207,7 +229,7 @@ export default function GenerateInfo(props) {
         >
           {renderInfographic()}
         </Swiper>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={async () => sendInfograph()}>
           <Text>save</Text>
         </TouchableOpacity>
         <TouchableOpacity

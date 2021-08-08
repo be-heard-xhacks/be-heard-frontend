@@ -34,7 +34,9 @@ export default function SmallNews(props) {
               style={global.srcImg}
             ></Image>
             <Text style={[global.topSubtitle]}>{`  •  ${
-              props.article.hr ? props.article.hr : 2
+              props.article.time
+                ? props.article.time
+                : Math.ceil(Math.random(5) * 5)
             } hours ago`}</Text>
           </View>
         )}

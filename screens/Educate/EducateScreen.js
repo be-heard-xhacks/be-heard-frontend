@@ -62,7 +62,7 @@ export default function EducateScreen(props) {
       ));
   };
 
-  const generateHeadliens = (n) => {
+  const generateHeadlines = (n) => {
     return headlines
       .slice(0, n)
       .map((article) => (
@@ -169,7 +169,7 @@ export default function EducateScreen(props) {
           text="Headlines"
           style={global.h1}
         ></TextGradient>
-        {generateHeadliens(3)}
+        {generateHeadlines(3)}
         <TouchableOpacity
           onPress={() => {
             setDisplay(false);

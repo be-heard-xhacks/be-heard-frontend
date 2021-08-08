@@ -10,43 +10,53 @@ import MySpotlight from "../components/MySpotlight";
 
 export default function Profile(props) {
 // const navigation = useNavigation();
-const { setIsProfile, logout, setDisplay } = useContext(AuthContext); 
+const { setIsProfile, logout, getCurrentUser } = useContext(AuthContext); 
 const [edit, setEdit] = useState(false); 
-  useEffect(() => {
-    setDisplay(false);
-  }, []);
-const person = {
-    "firstName": "Joe",
-    "lastName": "Bruin",
-    "email": "joebruin@gmail.com",
-    "posts": [
-        {
-            "title": "Title One",
-            "id": "1",
-            "url": "https://www.google.com/",
-            "img": "https://www.senate.gov/resources/images/col2_senatefloor.jpg"
-        },
-        {
-            "title": "Title Two",
-            "id": "2",
-            "url": "https://www.google.com/",
-            "img": "https://www.senate.gov/resources/images/col2_senatefloor.jpg"
-        },
-        {
-            "title": "Title Three",
-            "id": "3",
-            "url": "https://www.google.com/",
-            "img": "https://www.senate.gov/resources/images/col2_senatefloor.jpg"
-        },
-        {
-            "title": "Title Four",
-            "id": "4",
-            "url": "https://www.google.com/",
-            "img": "https://www.senate.gov/resources/images/col2_senatefloor.jpg"
-        }
-    ],
-    "interests": ["interest 1", "interest 2", "interest 3"]
-}
+const [person, setPerson] = useState(
+  {
+      "firstName": "Joe",
+      "lastName": "Bruin",
+      "email": "joebruin@gmail.com",
+      "posts": [
+          {
+              "title": "Title One",
+              "id": "1",
+              "url": "https://www.google.com/",
+              "img": "https://www.senate.gov/resources/images/col2_senatefloor.jpg"
+          },
+          {
+              "title": "Title Two",
+              "id": "2",
+              "url": "https://www.google.com/",
+              "img": "https://www.senate.gov/resources/images/col2_senatefloor.jpg"
+          },
+          {
+              "title": "Title Three",
+              "id": "3",
+              "url": "https://www.google.com/",
+              "img": "https://www.senate.gov/resources/images/col2_senatefloor.jpg"
+          },
+          {
+              "title": "Title Four",
+              "id": "4",
+              "url": "https://www.google.com/",
+              "img": "https://www.senate.gov/resources/images/col2_senatefloor.jpg"
+          }
+      ],
+      "interests": ["interest 1", "interest 2", "interest 3"]
+  });
+
+useEffect(() => {
+  const getPerson = async () => {
+    const profile = await getCurrentUser();
+    if (profile) {
+      setPerson(profile)
+    }
+  }
+  setDisplay(false)
+  getPerson()
+},[])
+
   return (
     <View style={styles.container}>
       <TouchableOpacity

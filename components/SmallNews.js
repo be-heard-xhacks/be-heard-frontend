@@ -45,7 +45,11 @@ export default function SmallNews(props) {
           <Text style={global.tag}>{props.article.label}</Text>
         )}
       </View>
-      <Image source={props.article.image} style={styles.img}></Image>
+      <Image
+        source={{ uri: props.article.image }}
+        resizeMode="cover"
+        style={styles.img}
+      ></Image>
     </TouchableOpacity>
   );
 }

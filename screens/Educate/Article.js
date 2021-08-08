@@ -27,14 +27,6 @@ export default function Article(props) {
     setDisplay(false);
   }, []);
 
-  const displaySummary = (summary) => {
-    return summary.map((sentence) => (
-      <View key={sentence} style={{ padding: 10 }}>
-        <Text>{sentence}</Text>
-      </View>
-    ));
-  };
-
   return (
    <ScrollView style={{backgroundColor:'white'}}>
       <TouchableOpacity
@@ -50,36 +42,29 @@ export default function Article(props) {
               <Ionicons name="chevron-back-outline" size={25} color="black" />
             </View>
         </TouchableOpacity>
-        
+       
       <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
         <Text style={global.pageTitle}>{article.title}</Text>
-        <Text>{article.summary ? displaySummary(article.summary) : ""}</Text>
-        <TouchableOpacity onPress={() => 
+        <ImageBackground
+          source={{ uri: article.image }}
+          resizeMode="cover"
+          style={styles.image}
+        ></ImageBackground>
+        <Text>{article.summary ? article.summary : ""}</Text>
+    <   TouchableOpacity onPress={() => 
           Linking.openURL(article.source).catch(err => {
             console.error("Failed opening page because: ", err)
             alert('Failed to open page')
           })}>
           <Text style={[global.tag, {alignSelf:'center', marginVertical: 10}]}>Read More</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>        
       </SafeAreaView>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  pageTitle: {
-    alignSelf: "center",
-    fontFamily: "boldfont",
-    fontSize: 32,
-    // marginTop: 10,
-    // flex: 1,
-  },
-  userIcon: {
-    position: "absolute",
-    top: 3,
-    right: 20,
-    flex: 1
-  },
+
   header: {
     marginTop: 10
     // flexDirection:'row',
@@ -87,5 +72,22 @@ const styles = StyleSheet.create({
     // alignContent:'flex-end',
     // backgroundColor: 'purple',
   },
+  image: {
+    // height:100,
+    borderRadius: 5,
+    overflow: "hidden",
+    height: 160,
+    width: 160,
+    // flex: 1,
+    // marginLeft: 10
+  },
+  container: {
+    flex: 1,
+    marginRight: 10,
+    borderRadius: 5,
+  },
+  text: {
+    padding: 20,
+    alignItems: "center",
+  },
 });
-

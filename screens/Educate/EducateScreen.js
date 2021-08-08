@@ -13,12 +13,17 @@ import {
 import SmallNews from "../../components/SmallNews";
 import BigNews from "../../components/BigNews";
 import dummyData from "../../assets/dummyData";
-
+import global from "../../styles.js";
+import { HomeContext } from "../../navigation/HomeProvider";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../navigation/AuthProvider";
 import { useContext, useEffect } from "react/cjs/react.development";
 
 export default function EducateScreen(props) {
+  const [userName, setUserName] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const { articles } = useContext(HomeContext); //NEWS API
   const { setDisplay } = useContext(AuthContext);
   useEffect(() => {
     console.log(true)
@@ -28,7 +33,6 @@ export default function EducateScreen(props) {
   const [refreshing, setRefreshing] = useState(false);
   const [inChild, setInChild] = useState(false);
   const [spotlights, setSpotlights] = useState(dummyData.spotlights);
-  const [forYou, setForYou] = useState(dummyData.forYou);
   const [headlines, setHeadlines] = useState(dummyData.headlines);
 
   // create useEffect for each of these above
@@ -47,7 +51,8 @@ export default function EducateScreen(props) {
   };
 
   const generateForYou = (n) => {
-    return forYou
+    if (!articles || articles.length < 1) return null;
+    return articles
       .slice(0, n)
       .map((article) => (
         <BigNews
@@ -151,7 +156,7 @@ export default function EducateScreen(props) {
             setDisplay(false);
             setInChild(true);
             console.log(false);
-            props.navigation.navigate("For You", { list: forYou });
+            props.navigation.navigate("For You", { list: articles });
             console.log("moved to for you");
           }}
         >

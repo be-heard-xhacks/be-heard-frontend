@@ -2,14 +2,29 @@ import React, { useState, useEffect, useContext } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import EducateStack from "./EducateStack";
 import EnactStack from "./EnactStack";
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import Profile from "./ProfileStack";
+import { View, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import TextGradient from "../components/TextGradient";
 import { AuthContext } from "./AuthProvider";
 import Header from "../components/Header";
 import TextGradient from "../components/TextGradient";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { HomeProvider } from "./HomeProvider";
 
-export default function HomeStack(props) {
+export default function WrappedHomeStack() {
+  return (
+    <HomeProvider>
+      <SafeAreaView style={styles.container}>
+        <HomeStack />
+      </SafeAreaView>
+    </HomeProvider>
+  );
+}
+
+export function HomeStack() {
   const Tab = createMaterialTopTabNavigator();
   const { display } = useContext(AuthContext);
   const { setIsProfile } = useContext(AuthContext);
@@ -18,7 +33,7 @@ export default function HomeStack(props) {
     <View style={styles.container}>
       {display && <View style={styles.header}>
       <TextGradient
-          height={display ? 30 : 45}
+          height={30}
           // width="70%"
           text="Be Heard"
           style={[styles.pageTitle]}

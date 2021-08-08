@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../navigation/AuthProvider";
 import { Text, View, TouchableOpacity, TextInput, StyleSheet, Button, ScrollView } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
@@ -10,8 +10,11 @@ import MySpotlight from "../components/MySpotlight";
 
 export default function Profile(props) {
 // const navigation = useNavigation();
-const { setIsProfile, logout } = useContext(AuthContext); 
+const { setIsProfile, logout, setDisplay } = useContext(AuthContext); 
 const [edit, setEdit] = useState(false); 
+  useEffect(() => {
+    setDisplay(false);
+  }, []);
 const person = {
     "firstName": "Joe",
     "lastName": "Bruin",
@@ -48,13 +51,13 @@ const person = {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
+            setDisplay(true)
             setIsProfile(false)
         }}
         style={global.back}
         hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
       >
           <View>
-            <Text></Text>
             <Ionicons name="chevron-back-outline" size={25} color="black" />
           </View>
       </TouchableOpacity>

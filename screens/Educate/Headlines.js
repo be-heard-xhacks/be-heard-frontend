@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles.js";
+import global from "../../styles.js";
 import {
   Text,
   TouchableOpacity,
@@ -31,8 +31,8 @@ export default function Headlines(props) {
   };
 
   return (
-    <ScrollView>
-      <SafeAreaView style={{ flex: 1 }}>
+    <ScrollView style={{backgroundColor:'white'}}>
+      <SafeAreaView style={{ flex: 1, margin: 20 }}>
         <TouchableOpacity
           onPress={() => {
             setDisplay(true);
@@ -41,7 +41,7 @@ export default function Headlines(props) {
         >
           <Text>◂</Text>
         </TouchableOpacity>
-        <Text>Headlines</Text>
+        <Text style={global.pageTitle}>Headlines</Text>
         {generateList()}
       </SafeAreaView>
     </ScrollView>

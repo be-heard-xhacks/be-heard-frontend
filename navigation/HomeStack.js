@@ -2,27 +2,35 @@ import React, { useState, useEffect, useContext } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import EducateStack from "./EducateStack";
 import EnactStack from "./EnactStack";
-import Profile from "./ProfileStack";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import TextGradient from "../components/TextGradient";
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { AuthContext } from "./AuthProvider";
-import { FontAwesome } from "@expo/vector-icons";
+import Header from "../components/Header";
 
-export default function HomeStack() {
+export default function HomeStack(props) {
   const Tab = createMaterialTopTabNavigator();
   const { display } = useContext(AuthContext);
   const { setIsProfile } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TextGradient
+      {/* <View style={styles.header}>
+      <TextGradient
           height={display ? 30 : 45}
+          // width="70%"
           text="Be Heard"
           style={[styles.pageTitle]}
-        ></TextGradient>
+        ></TextGradient>  
+        {!display && <TouchableOpacity
+          onPress={() => {
+            
+          }}
+          style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
+          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+        >
+            <View>
+              <Ionicons name="chevron-back-outline" size={25} color="black" />
+            </View>
+        </TouchableOpacity>}
         <TouchableOpacity
           style={styles.userIcon}
           onPress={() => {
@@ -34,7 +42,8 @@ export default function HomeStack() {
         >
           <FontAwesome name="user-circle" size={25} color="#B5B5B5" />
         </TouchableOpacity>
-      </View>
+      </View> */}
+      {display && <Header display={display}></Header>}
       <Tab.Navigator
         initialRouteName="Home"
         screenOptions={
@@ -61,22 +70,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  pageTitle: {
-    alignSelf: "center",
-    fontFamily: "boldfont",
-    fontSize: 32,
-    marginTop: 5,
-    // flex: 1,
-  },
-  userIcon: {
-    position: "absolute",
-    top: 3,
-    right: 20,
-  },
-  header: {
-    // flexDirection:'row',
-    // justifyContent: 'space-between',
-    // backgroundColor: 'purple',
   },
 });

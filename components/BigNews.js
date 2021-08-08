@@ -56,9 +56,9 @@ export default function BigNews(props) {
                   source={require("../assets/source.png")}
                   style={global.srcImg}
                 ></Image>
-                <Text
-                  style={[global.topSubtitle, { color: "white" }]}
-                >{`  •  ${props.article.time} hours ago`}</Text>
+                <Text style={[global.topSubtitle, { color: "white" }]}>{`  •  ${
+                  props.article.time ? props.article.time : 2
+                } hours ago`}</Text>
               </View>
               <Text
                 style={[global.headline, styles.spacing, , { color: "white" }]}

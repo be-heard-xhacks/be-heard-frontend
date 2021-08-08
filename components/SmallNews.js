@@ -33,9 +33,9 @@ export default function SmallNews(props) {
               source={require("../assets/source.png")}
               style={global.srcImg}
             ></Image>
-            <Text
-              style={[global.topSubtitle]}
-            >{`  •  ${props.article.hr} hours ago`}</Text>
+            <Text style={[global.topSubtitle]}>{`  •  ${
+              props.article.hr ? props.article.hr : 2
+            } hours ago`}</Text>
           </View>
         )}
         <Text style={[global.headline, styles.spacing]}>
@@ -53,7 +53,11 @@ export default function SmallNews(props) {
       </View>
       <Image
         // source={{ uri: props.article.image }}
-        source={props.article.image}
+        source={
+          props.article.image
+            ? props.article.image
+            : require("../assets/bg.jpg")
+        }
         // source={require("../assets/bg.jpg")}
         resizeMode="cover"
         style={styles.img}

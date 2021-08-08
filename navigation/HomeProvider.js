@@ -6,8 +6,10 @@ import { AuthContext } from "./AuthProvider";
 
 export const HomeProvider = ({ children }) => {
   const [articles, setArticles] = useState([]);
+  const [spotlights, setSpotlights] = useState([]);
   const { userToken } = useContext(AuthContext);
   const [interests, setInterests] = useState([]);
+  const [headlines, setHeadlines] = useState([]);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -37,6 +39,27 @@ export const HomeProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    updateHeadlines();
+  }, [user]);
+  const updateHeadlines = async () => {
+    if (userToken) {
+      const res = await fetch(apiKeys.SERVER_BASE_URL + "/getTrending", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "access-token": userToken,
+        },
+      });
+      const json = await res.json();
+      const headlineResponse = json.data;
+      setHeadlines([headlineResponse]);
+    } else {
+      console.log("Initial");
+      setHeadlines([]);
+    }
+  };
+
+  useEffect(() => {
     const grabArticles = async () => {
       console.log("Articles is: ");
       if (userToken && interests.length > 0) {
@@ -62,13 +85,39 @@ export const HomeProvider = ({ children }) => {
     //SHOULD INTERESTS BE IN ARRAY?
   }, [userToken, interests]);
 
+  useEffect(() => {
+    const grabSpotlights = async () => {
+      if (userToken) {
+        console.log("Fetching spotlights...");
+        const newSpotlightsResponse = await fetch(
+          apiKeys.SERVER_BASE_URL + "/getSpotlighted",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "access-token": userToken,
+            },
+          }
+        );
+        const newSpotlightsMessage = await newSpotlightsResponse.json();
+        const newSpotlights = newSpotlightsMessage.message;
+        console.log(newSpotlights);
+        setSpotlights(newSpotlights);
+      } else setSpotlights([]);
+    };
+    grabSpotlights();
+  }, [userToken]);
+
   return (
     <HomeContext.Provider
       value={{
         interests,
         updateInterests,
+        headlines,
+        updateHeadlines,
         articles,
         user,
+        spotlights,
       }}
     >
       {children}

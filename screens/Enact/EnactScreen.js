@@ -32,7 +32,7 @@ export default function EnactScreen(props) {
             console.log("moved to create spotlight");
           }}
         >
-          <EnactButton page="Create Spotlight" spotlight={true} subtitle="Lorem ipsum dolor amet. Lorem ipsum dolor."></EnactButton>
+          <EnactButton page="Create Spotlight" spotlight={true} subtitle="Get your voice out by spotlighting your story."></EnactButton>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {

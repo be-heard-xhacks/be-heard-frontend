@@ -10,18 +10,28 @@ import {
 import global from "../styles.js";
 
 export default function SmallNews(props) {
+  const findTime = (utc) => {
+    let a = new Date(utc);
+    let b = new Date();
+    return Math.ceil(Math.abs(a - b) / 36e5);
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        props.navigation.navigate("Article", { article: props.article, inChild:props.inChild });
+        props.navigation.navigate("Article", {
+          article: props.article,
+          inChild: props.inChild,
+          spotlight: props.spotlight,
+        });
         console.log("moved to article");
       }}
     >
       <View style={styles.text}>
         {props.spotlight ? (
           <Text style={global.topSubtitle}>
-            Spotlighted by {props.article.spotlightAuthor}
+            Spotlighted by {props.article.author}
           </Text>
         ) : (
           <View style={styles.top}>
@@ -29,9 +39,11 @@ export default function SmallNews(props) {
               source={require("../assets/source.png")}
               style={global.srcImg}
             ></Image>
-            <Text
-              style={[global.topSubtitle]}
-            >{`  •  ${props.article.hr} hours ago`}</Text>
+            <Text style={[global.topSubtitle]}>{`  •  ${
+              props.article.time
+                ? findTime(props.article.time)
+                : Math.ceil(Math.random(5) * 5)
+            } hours ago`}</Text>
           </View>
         )}
         <Text style={[global.headline, styles.spacing]}>
@@ -42,12 +54,18 @@ export default function SmallNews(props) {
             style={global.srcImg}
           ></Image> */}
         {props.spotlight && (
-          <Text style={global.tag}>{props.article.label}</Text>
+          <Text style={global.tag}>
+            {props.article.label ? props.article.label : "Sponsored"}
+          </Text>
         )}
       </View>
       <Image
         // source={{ uri: props.article.image }}
-        source={props.article.image}
+        source={
+          props.article.image
+            ? props.article.image
+            : require("../assets/bg.jpg")
+        }
         // source={require("../assets/bg.jpg")}
         resizeMode="cover"
         style={styles.img}

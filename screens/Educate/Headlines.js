@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
-  View
+  View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -22,7 +22,7 @@ export default function Headlines(props) {
   }, []);
 
   const generateList = () => {
-    return list.map((article) => (
+    return list[0].map((article) => (
       <BigNews
         article={article}
         key={article.id}
@@ -33,22 +33,27 @@ export default function Headlines(props) {
   };
 
   return (
-    <ScrollView style={{backgroundColor:'white'}}>
-
+    <ScrollView style={{ backgroundColor: "white" }}>
       <TouchableOpacity
-          onPress={() => {
-            setDisplay(true);
-            console.log(true);
-            navigation.goBack();
-          }}
-          style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
-          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
-        >
-            <View>
-              <Ionicons name="chevron-back-outline" size={25} color="black" />
-            </View>
-        </TouchableOpacity>
-        
+        onPress={() => {
+          setDisplay(true);
+          console.log(true);
+          navigation.goBack();
+        }}
+        style={{
+          height: 40,
+          width: 40,
+          position: "absolute",
+          top: 0,
+          left: 10,
+        }}
+        hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+      >
+        <View>
+          <Ionicons name="chevron-back-outline" size={25} color="black" />
+        </View>
+      </TouchableOpacity>
+
       <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
         <Text style={global.pageTitle}>Headlines</Text>
         {generateList()}

@@ -22,20 +22,20 @@ export default function EducateScreen(props) {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
-  const { articles } = useContext(HomeContext); //NEWS API
+  const { articles, headlines, spotlights } = useContext(HomeContext); //NEWS API
   const { setDisplay } = useContext(AuthContext);
   useEffect(() => {
-    console.log(true)
+    console.log(true);
     setDisplay(true);
   }, []);
 
   const [inChild, setInChild] = useState(false);
-  const [spotlights, setSpotlights] = useState(dummyData.spotlights);
-  const [headlines, setHeadlines] = useState(dummyData.headlines);
+  // const [headlines, setHeadlines] = useState(dummyData.headlines);
 
   // create useEffect for each of these above
 
   const generateSpotlights = (n) => {
+    if (!spotlights || spotlights.length < 1) return null;
     return spotlights
       .slice(0, n)
       .map((article) => (
@@ -61,8 +61,9 @@ export default function EducateScreen(props) {
       ));
   };
 
-  const generateHeadliens = (n) => {
-    return headlines
+  const generateHeadlines = (n) => {
+    if (!headlines || headlines.length < 1) return null;
+    return headlines[0]
       .slice(0, n)
       .map((article) => (
         <SmallNews
@@ -96,19 +97,15 @@ export default function EducateScreen(props) {
         ></TextGradient>
         <TouchableOpacity>
           <Image
-            source={require("../../assets/bg.jpg")}
+            source={require("../../assets/todayspick.jpeg")}
             style={styles.todayImg}
           ></Image>
           <View style={styles.headline}>
             <Text style={global.headline}>
-              Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit
+              So You Want to Talk About Race - by Ijeoma Oluo
             </Text>
-            <Image
-              source={require("../../assets/source.png")}
-              style={global.srcImg}
-            ></Image>
           </View>
-          <Text style={global.tag}>Label</Text>
+          <Text style={global.tag}>Critical Race Theory</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -168,7 +165,7 @@ export default function EducateScreen(props) {
           text="Headlines"
           style={global.h1}
         ></TextGradient>
-        {generateHeadliens(3)}
+        {generateHeadlines(3)}
         <TouchableOpacity
           onPress={() => {
             setDisplay(false);

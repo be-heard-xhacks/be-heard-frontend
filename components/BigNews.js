@@ -24,12 +24,21 @@ import { LinearGradient } from "expo-linear-gradient";
 */
 
 export default function BigNews(props) {
+  const findTime = (utc) => {
+    let a = new Date(utc);
+    let b = new Date();
+    return Math.ceil(Math.abs(a - b) / 36e5);
+  };
   // console.log(props.article.image)
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate("Article", { article: props.article, inChild: props.inChild });
+          props.navigation.navigate("Article", {
+            article: props.article,
+            inChild: props.inChild,
+            spotlight: props.spotlight,
+          });
           console.log("moved to article");
         }}
       >
@@ -52,9 +61,11 @@ export default function BigNews(props) {
                   source={require("../assets/source.png")}
                   style={global.srcImg}
                 ></Image>
-                <Text
-                  style={[global.topSubtitle, { color: "white" }]}
-                >{`  •  ${props.article.time} hours ago`}</Text>
+                <Text style={[global.topSubtitle, { color: "white" }]}>{`  •  ${
+                  props.article.time
+                    ? findTime(props.article.time)
+                    : Math.ceil(Math.random(4) * 5)
+                } hours ago`}</Text>
               </View>
               <Text
                 style={[global.headline, styles.spacing, , { color: "white" }]}
@@ -64,7 +75,11 @@ export default function BigNews(props) {
               <Text
                 style={[global.tag, , { color: "white", borderColor: "white" }]}
               >
-                {props.article.interest}
+                {props.article.interest
+                  ? props.article.interest
+                  : props.spotlight
+                  ? "Sponsored"
+                  : "Headline"}
               </Text>
             </View>
           </LinearGradient>

@@ -18,7 +18,9 @@ import {
 
 
 export default function Article(props) {
+  
   const { article } = props.route.params;
+  console.log(article)
   const { display, setDisplay } = useContext(AuthContext);
   const { setIsProfile } = useContext(AuthContext);
 
@@ -28,11 +30,16 @@ export default function Article(props) {
     setDisplay(false);
   }, []);
 
+  const inChild = props.route.params.inChild
+
+  if(inChild)console.log("i'm in a child!")
+  else console.log("i'm not in a child")
+
   return (
    <ScrollView style={{backgroundColor:'white'}}>
       <TouchableOpacity
           onPress={() => {
-            if(!props.inChild) {
+            if(!inChild) {
               setDisplay(!display);
               console.log(!display);
             }

@@ -28,7 +28,7 @@ export default function BigNews(props) {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate("Article", { article: props.article, inChild:props.inChild });
+          props.navigation.navigate("Article", { article: props.article, inChild: props.inChild });
           console.log("moved to article");
         }}
       >

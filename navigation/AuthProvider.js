@@ -46,22 +46,20 @@ export const AuthProvider = ({ children }) => {
   //function to login the user
   const login = async (user, pass) => {
     console.log("Basic " + encode(user + ":" + pass));
-    const res = await fetch(
-      apiKeys.SERVER_BASE_URL + "/login",
-      {
-        method: "POST",
-        headers: {
-          Authorization: "Basic " + encode(user + ":" + pass),
-        },
-      }
-    );
-    const tokenStatusData = await res.json();
+    const res = await fetch(apiKeys.SERVER_BASE_URL + "/login", {
+      method: "POST",
+      headers: {
+        Authorization: "Basic " + encode(user + ":" + pass),
+      },
+    });
+    console.log(res.status);
     if (res.status >= 400) {
       console.log("Error signing in!");
       alert("Invalid username or password");
       setIsValidToken(false);
       setJWTToken("");
     } else {
+      const tokenStatusData = await res.json();
       console.log("Successfully signed in");
       setJWTToken(tokenStatusData["jwt_token"]);
       setUserToken(tokenStatusData["jwt_token"]);
@@ -72,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   //TODO: FIX ERROR MESSAGE
   //function to register the user
   const register = async (profile) => {
-    const {email, password} = profile
+    const { email, password } = profile;
     console.log(JSON.stringify(profile));
     const registerResponse = await fetch(
       apiKeys.SERVER_BASE_URL + "/register",
@@ -87,9 +85,7 @@ export const AuthProvider = ({ children }) => {
 
     const registerResponseData = await registerResponse.json();
     console.log(registerResponseData);
-    if (
-      registerResponse.status > 400
-    ) {
+    if (registerResponse.status > 400) {
       alert("This email is already taken!");
     } else {
       alert("User has been successfully registered!");
@@ -98,24 +94,21 @@ export const AuthProvider = ({ children }) => {
   };
 
   const getCurrentUser = async () => {
-    const res = await fetch(
-      apiKeys.SERVER_BASE_URL + "/getUser",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "access-token": userToken,
-        },
-      }
-    );
+    const res = await fetch(apiKeys.SERVER_BASE_URL + "/getUser", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "access-token": userToken,
+      },
+    });
     if (res.status === 200) {
-      const json = await res.json()
+      const json = await res.json();
       const profile = json.profile;
       profile.posts = [];
-      return profile
+      return profile;
     }
-    return null
-  }
+    return null;
+  };
 
   //useEffect to track if the jwt token is valid
   useEffect(() => {
@@ -124,17 +117,14 @@ export const AuthProvider = ({ children }) => {
         setIsValidToken(false);
       } else if (userToken && !isValidToken) {
         console.log("attempting log-in with: " + userToken);
-        const res = await fetch(
-          apiKeys.SERVER_BASE_URL + "/validateToken",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "access-token": userToken,
-            },
-          }
-        );
-        console.log(res.status)
+        const res = await fetch(apiKeys.SERVER_BASE_URL + "/validateToken", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "access-token": userToken,
+          },
+        });
+        console.log(res.status);
         const tokenStatusData = await res.json();
         console.log(tokenStatusData);
         if (res.status >= 400) {

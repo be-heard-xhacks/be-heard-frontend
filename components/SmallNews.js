@@ -47,7 +47,8 @@ export default function SmallNews(props) {
       </View>
       <Image
         // source={{ uri: props.article.image }}
-        source={require("../assets/bg.jpg")}
+        source={props.article.image}
+        // source={require("../assets/bg.jpg")}
         resizeMode="cover"
         style={styles.img}
       ></Image>

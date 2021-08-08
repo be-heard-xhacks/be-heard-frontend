@@ -50,6 +50,14 @@ export default StyleSheet.create({
     marginVertical:10,
     borderRadius: 5
   },
+  inputLong:{
+    height: 200,
+    borderWidth: 0.5,
+    paddingHorizontal: 10,
+    paddingTop: 10,
+    marginVertical:10,
+    borderRadius: 5
+  },
   back:{
     position: 'absolute',
     top: 5,
@@ -58,5 +66,37 @@ export default StyleSheet.create({
     // padding: 10,
     height:50,
     // backgroundColor:'red'
+  },
+  button: {
+    fontFamily: 'medium',
+    fontSize: 16,
+    backgroundColor: '#FF4B00',
+    color: "white",
+    overflow: 'hidden',
+    borderColor: "#FF4B00",
+    borderWidth: 1,
+    minWidth: 100,
+    alignSelf: 'center',
+    textAlign: 'center',
+    borderRadius:16,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    marginTop: 10
+  },
+  button2: {
+    fontFamily: 'medium',
+    fontSize: 16,
+    backgroundColor: 'white',
+    color: "#1F1F1F",
+    overflow: 'hidden',
+    borderColor: "#1F1F1F",
+    borderWidth: 1,
+    minWidth: 100,
+    alignSelf: 'flex-start',
+    textAlign: 'center',
+    borderRadius:16,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    marginTop: 10
   }
 });

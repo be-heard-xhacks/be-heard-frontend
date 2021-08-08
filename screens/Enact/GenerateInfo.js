@@ -7,11 +7,13 @@ import {
   TextInput,
   Touchable,
 } from "react-native";
+import global from "../../styles.js";
 import { useNavigation } from "@react-navigation/native";
 import { useContext, useEffect } from "react/cjs/react.development";
 import { AuthContext } from "../../navigation/AuthProvider.js";
 import Swiper from "react-native-swiper";
 import apiKeys from "../../config/apiKeys";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function GenerateInfo(props) {
   const navigation = useNavigation();
@@ -57,31 +59,38 @@ export default function GenerateInfo(props) {
     switch (bodyPage) {
       case 0: // not selected
         return (
-          <View style={{ flexDirection: "row", flex: 1 }}>
-            <TouchableOpacity onPress={() => setBodyPage(1)}>
-              <Text>Summarize Text</Text>
+          <View
+            style={{ flexDirection: "row", flex: 1, justifyContent: "center" }}
+          >
+            <TouchableOpacity
+              style={{ marginRight: 10 }}
+              onPress={() => setBodyPage(1)}
+            >
+              <Text style={global.button}>Summarize Text</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setBodyPage(2)}>
-              <Text>Manually Write Content</Text>
+              <Text style={global.button}>Manually Write Content</Text>
             </TouchableOpacity>
           </View>
         );
       case 1: // summarize
         return (
           <View>
-            <Text>Insert source text:</Text>
+            {/* <Text style={global.body}>Insert source text:</Text> */}
             <TextInput
-              style={global.input}
+              style={global.inputLong}
               onChangeText={setTextToSummarize}
               value={textToSummarize}
+              multiline={true}
+              numberOfLines={5}
               placeholder="Insert text to summarize"
             />
             <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity onPress={() => setBodyPage(0)}>
-                <Text>Go Back</Text>
-              </TouchableOpacity>
+              {/* <TouchableOpacity onPress={() => setBodyPage(0)}>
+                <Text style={global.button}>Go Back</Text>
+              </TouchableOpacity> */}
               <TouchableOpacity onPress={() => setBodyPage(3)}>
-                <Text>Summarize</Text>
+                <Text style={global.button}>Summarize</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -99,7 +108,7 @@ export default function GenerateInfo(props) {
                 setSentences([...temp]);
               }}
               value={s}
-              placeholder="Insert a sentence"
+              placeholder="Insert text"
               key={i}
             />
           ));
@@ -109,12 +118,12 @@ export default function GenerateInfo(props) {
             {inputs()}
             {sentences.length < 10 && (
               <TouchableOpacity onPress={() => addSentence("")}>
-                <Text>Add a sentence</Text>
+                <Text style={global.button2}>Add Slide</Text>
               </TouchableOpacity>
             )}
             <TouchableOpacity onPress={() => setEditing(false)}>
               {/* ONPRESS GENERATES INFOGRAPHIC */}
-              <Text>Generate</Text>
+              <Text style={global.button}>Generate</Text>
             </TouchableOpacity>
           </View>
         );
@@ -161,88 +170,115 @@ export default function GenerateInfo(props) {
 
   if (editing)
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ backgroundColor: "white", height: "100%" }}>
         <TouchableOpacity
           onPress={() => {
             setDisplay(true);
             navigation.goBack();
           }}
+          style={{
+            height: 40,
+            width: 40,
+            position: "absolute",
+            top: 0,
+            left: 10,
+          }}
+          hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
         >
-          <Text>◂</Text>
+          <View>
+            <Ionicons name="chevron-back-outline" size={25} color="black" />
+          </View>
         </TouchableOpacity>
-        <Text>Generate Infographic</Text>
-        <Text>Title:</Text>
-        <TextInput
-          style={global.input}
-          onChangeText={setTitle}
-          value={title}
-          placeholder="Insert Title"
-        />
-        <Text>Body:</Text>
-        {bodyInput()}
+        <View style={{ flex: 1, margin: 20, marginTop: 50 }}>
+          <Text style={global.pageTitle}>Generate Infographic</Text>
+          <Text style={global.body}>Title:</Text>
+          <TextInput
+            style={global.input}
+            onChangeText={setTitle}
+            value={title}
+            placeholder="Insert Title"
+          />
+          <Text style={global.body}>Body:</Text>
+          {bodyInput()}
+        </View>
       </SafeAreaView>
     );
   else
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ backgroundColor: "white", height: "100%" }}>
         <TouchableOpacity
           onPress={() => {
             setDisplay(true);
             navigation.goBack();
           }}
-        >
-          <Text>◂</Text>
-        </TouchableOpacity>
-        <Text>Generate Infographic</Text>
-        <Text>{title}</Text>
-        <Swiper
-          style={styles.wrapper}
-          loop={false}
-          dot={
-            <View
-              style={{
-                backgroundColor: "rgba(255,255,255,.3)",
-                width: 13,
-                height: 13,
-                borderRadius: 7,
-                marginLeft: 7,
-                marginRight: 7,
-              }}
-            />
-          }
-          activeDot={
-            <View
-              style={{
-                backgroundColor: "#fff",
-                width: 13,
-                height: 13,
-                borderRadius: 7,
-                marginLeft: 7,
-                marginRight: 7,
-              }}
-            />
-          }
-          paginationStyle={{
-            bottom: 70,
+          style={{
+            height: 40,
+            width: 40,
+            position: "absolute",
+            top: 0,
+            left: 10,
           }}
-          loop={false}
+          hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
         >
-          {renderInfographic()}
-        </Swiper>
-        <TouchableOpacity onPress={async () => sendInfograph()}>
-          <Text>save</Text>
+          <View>
+            <Ionicons name="chevron-back-outline" size={25} color="black" />
+          </View>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setEditing(true);
-            setBodyPage(0);
-            setTitle("");
-            setTextToSummarize("");
-            setSentences([]);
-          }}
-        >
-          <Text>create new infographic</Text>
-        </TouchableOpacity>
+        <View style={{ flex: 1, margin: 20, marginTop: 50 }}>
+          <Text style={global.pageTitle}>Generate Infographic</Text>
+          <Text style={global.body}>{title}</Text>
+          <Swiper
+            style={styles.wrapper}
+            loop={false}
+            dot={
+              <View
+                style={{
+                  backgroundColor: "rgba(255,255,255,.3)",
+                  width: 13,
+                  height: 13,
+                  borderRadius: 7,
+                  marginLeft: 7,
+                  marginRight: 7,
+                }}
+              />
+            }
+            activeDot={
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  width: 13,
+                  height: 13,
+                  borderRadius: 7,
+                  marginLeft: 7,
+                  marginRight: 7,
+                }}
+              />
+            }
+            paginationStyle={{
+              bottom: 70,
+            }}
+            loop={false}
+          >
+            {renderInfographic()}
+          </Swiper>
+          <TouchableOpacity
+            style={global.button}
+            onPress={async () => sendInfograph()}
+          >
+            <Text>save</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setEditing(true);
+              setBodyPage(0);
+              setTitle("");
+              setTextToSummarize("");
+              setSentences([]);
+            }}
+          >
+            <Text style={global.button}>Create New Infographic</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     );
 }
@@ -258,10 +294,13 @@ var styles = {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#9DD6EB",
+    backgroundColor: "#1F1F1F",
+    // width: 10,
+    borderRadius: 5,
+    marginVertical: 20,
   },
   text: {
-    color: "#fff",
+    color: "#FF4B00",
     fontSize: 30,
     fontWeight: "bold",
   },

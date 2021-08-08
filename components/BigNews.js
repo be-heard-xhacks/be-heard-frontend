@@ -45,7 +45,11 @@ export default function BigNews(props) {
         <ImageBackground
           // source={{ uri: props.article.image }}
           // source={props.article.image}
-          source={require("../assets/bg.jpg")}
+          source={{
+            uri: props.article.img
+              ? props.article.img
+              : "https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png",
+          }}
           resizeMode="cover"
           style={styles.image}
         >
@@ -58,7 +62,11 @@ export default function BigNews(props) {
             <View style={styles.text}>
               <View style={styles.top}>
                 <Image
-                  source={require("../assets/source.png")}
+                  source={{
+                    uri: props.article.img
+                      ? props.article.img
+                      : "https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png",
+                  }}
                   style={global.srcImg}
                 ></Image>
                 <Text style={[global.topSubtitle, { color: "white" }]}>{`  •  ${

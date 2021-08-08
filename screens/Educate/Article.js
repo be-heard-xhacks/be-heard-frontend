@@ -87,7 +87,11 @@ export default function Article(props) {
       return (
         <ImageBackground
           // source={{ uri: article.image }}
-          source={article.img}
+          source={{
+            uri: article.img
+              ? article.img
+              : "https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png",
+          }}
           // source={require("../../assets/bg.jpg")}
           resizeMode="cover"
           style={styles.image}

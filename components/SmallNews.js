@@ -36,7 +36,11 @@ export default function SmallNews(props) {
         ) : (
           <View style={styles.top}>
             <Image
-              source={require("../assets/source.png")}
+              source={{
+                uri: props.article.img
+                  ? props.article.img
+                  : "https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png",
+              }}
               style={global.srcImg}
             ></Image>
             <Text style={[global.topSubtitle]}>{`  •  ${
@@ -60,12 +64,16 @@ export default function SmallNews(props) {
         )}
       </View>
       <Image
-        // source={{ uri: props.article.image }}
-        source={
-          props.article.image
-            ? props.article.image
-            : require("../assets/bg.jpg")
-        }
+        source={{
+          uri: props.article.img
+            ? props.article.img
+            : "https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png",
+        }}
+        // source={
+        //   props.article.image
+        //     ? props.article.image
+        //     : require("../assets/bg.jpg")
+        // }
         // source={require("../assets/bg.jpg")}
         resizeMode="cover"
         style={styles.img}

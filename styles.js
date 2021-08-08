@@ -47,6 +47,8 @@ export default StyleSheet.create({
     height: 40,
     borderWidth: 0.5,
     padding: 10,
+    marginVertical:10,
+    borderRadius: 5
   },
   back:{
     position: 'absolute',

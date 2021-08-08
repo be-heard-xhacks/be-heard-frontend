@@ -19,8 +19,8 @@ export default function NavigationStack() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      {true ? isProfile ? <ProfileStack/>:<HomeStack /> : <AuthStack />}
-      {/* {isValidToken ? isProfile ? <ProfileStack/>:<HomeStack /> : <AuthStack />} */}
+      {/* {true ? isProfile ? <ProfileStack/>:<HomeStack /> : <AuthStack />} */}
+      {isValidToken ? isProfile ? <ProfileStack/>:<HomeStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }

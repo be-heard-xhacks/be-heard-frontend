@@ -7,7 +7,9 @@ import {
   SafeAreaView,
   TextInput,
   Button,
+  StyleSheet
 } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 import { AuthContext } from "../../navigation/AuthProvider.js";
 
 export default function Register(props) {
@@ -15,8 +17,8 @@ export default function Register(props) {
   const [password, onChangePassword] = React.useState("");
   const [registered, setRegistered] = React.useState(false);
   const { register, login } = useContext(AuthContext);
-  const interests = ['advocacy', 'grassroots', 'feminism', 'politics', 'society',
-  'economics','journalism','boycott','policy','government','democracy']
+  const interests = ['Feminism', 'Politics', 'LGBTQ', 'Economics', 'Tech Equity',
+  'Education','Racial Justice','International','Environment',]
   const [selection, setSelection] = React.useState([])
   
   const updateSelection = (choice) => {
@@ -31,7 +33,13 @@ export default function Register(props) {
     }
   }
   const displayMessages = (list) => list.map((item) => {
-    return <Text key={item} onPress={() => updateSelection(item)}>{item}</Text>
+    return <Text 
+      key={item} 
+      style={[
+        styles.interest, 
+        selection.includes(item) ? {color: "#FF4B00", borderColor: "#FF4B00",}:{color: "#B5B5B5", borderColor: "#B5B5B5",}
+      ]} 
+      onPress={() => updateSelection(item)}>{item}</Text>
   })
 
   const handleRegister = () => {
@@ -44,30 +52,47 @@ export default function Register(props) {
 
   return (
     registered ?
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{backgroundColor:'white', height:'100%', justifyContent: 'center'}}>
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("Landing");
           console.log("moved to landing");
         }}
+        style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
+        hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
       >
-        <Text>◂</Text>
+          <View>
+            <Ionicons name="chevron-back-outline" size={25} color="black" />
+          </View>
       </TouchableOpacity>
-      <Text>Interests (choose up to 3)</Text>
-      {displayMessages(interests)}
-      <Button title="Select Interests" onPress={handleRegister} />
+      <View style={{marginHorizontal: 40}}>
+        <Text style={global.pageTitle}>Interests (choose up to 3)</Text>
+        <View style={{flexDirection:'row', flexWrap:'wrap', justifyContent: 'center'}}>
+          {displayMessages(interests)}
+        </View>
+        <TouchableOpacity
+        onPress={() => {
+          handleRegister
+        }}
+      ><Text style={styles.button}>Submit Interests</Text></TouchableOpacity>
+      </View>
     </SafeAreaView>
     :
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{backgroundColor:'white', height:'100%', justifyContent: 'center'}}>
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate("Landing");
           console.log("moved to landing");
         }}
+        style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
+        hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
       >
-        <Text>◂</Text>
+          <View>
+            <Ionicons name="chevron-back-outline" size={25} color="black" />
+          </View>
       </TouchableOpacity>
-      <Text>Register</Text>
+      <View style={{marginHorizontal: 40}}>
+      <Text style={global.pageTitle}>Welcome to Be Heard</Text>
       <TextInput
         style={global.input}
         onChangeText={onChangeEmail}
@@ -82,7 +107,44 @@ export default function Register(props) {
         placeholder="Password"
       />
 
-      <Button title="Register" onPress={() => setRegistered(true)} />
+      <TouchableOpacity
+        onPress={() => {
+          setRegistered(true)
+        }}
+      ><Text style={styles.button}>Register</Text></TouchableOpacity>
+      </View>
     </SafeAreaView>
+  
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    fontFamily: 'medium',
+    fontSize: 16,
+    backgroundColor: '#FF4B00',
+    color: "white",
+    overflow: 'hidden',
+    borderColor: "#FF4B00",
+    borderWidth: 1,
+    minWidth: 100,
+    alignSelf: 'center',
+    textAlign: 'center',
+    borderRadius:16,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    marginTop: 20
+  },
+  interest: {
+    fontFamily: 'medium',
+    fontSize: 16,
+    borderWidth: 1,
+    alignSelf: 'center',
+    textAlign: 'center',
+    borderRadius:16,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    margin: 5
+  }
+
+})

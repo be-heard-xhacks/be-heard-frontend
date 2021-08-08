@@ -28,12 +28,13 @@ export default function BigNews(props) {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate("Article", { article: props.article });
+          props.navigation.navigate("Article", { article: props.article, inChild: props.inChild });
           console.log("moved to article");
         }}
       >
         <ImageBackground
-          source={{ uri: props.article.image }}
+          // source={{ uri: props.article.image }}
+          source={require("../assets/bg.jpg")}
           resizeMode="cover"
           style={styles.image}
         >

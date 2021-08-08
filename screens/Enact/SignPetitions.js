@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from "react/cjs/react.development";
 import { AuthContext } from "../../navigation/AuthProvider.js";
 import { Ionicons } from "@expo/vector-icons";
 import {Picker} from '@react-native-picker/picker';
-import SmallNews from "../../components/SmallNews"
 
 export default function SignPetitions(props) {
   const navigation = useNavigation();

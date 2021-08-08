@@ -43,12 +43,12 @@ Building a multi-layered app navigation flow
 Bringing a high-fidelity mockup to life
 
 ## What we learned
-React Native
-MongoDB 
-Flask
-AWS
-Digital Ocean
-Ubuntu OS
+- React Native
+- MongoDB 
+- Flask
+- AWS
+- Digital Ocean
+- Ubuntu OS
 
 ## What's next for Be Heard
 The Be Heard team is looking forward to completing the implementation of the features on the Enact page. These features include the petition platform, Linktree generator, and a more advanced infographic creator.

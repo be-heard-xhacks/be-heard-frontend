@@ -60,9 +60,11 @@ export default function EmailReps(props) {
       />
       <Text>Body</Text>
       <TextInput
-        style={global.input}
+        style={global.inputLong}
         onChangeText={onChangeBody}
         value={body}
+        multiline={true}
+        numberOfLines={6}
         placeholder="Body"
       />
       <TouchableOpacity

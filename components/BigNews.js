@@ -32,6 +32,7 @@ export default function BigNews(props) {
           props.navigation.navigate("Article", {
             article: props.article,
             inChild: props.inChild,
+            spotlight: props.spotlight,
           });
           console.log("moved to article");
         }}

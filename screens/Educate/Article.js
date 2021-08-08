@@ -35,11 +35,11 @@ export default function Article(props) {
   else console.log("i'm not in a child");
 
   const renderInfographic = () => {
-    return sentences.map((s) => {
+    return article.sentences.map((s) => {
       if (s.length > 0)
         return (
           <View style={styles.slide}>
-            <Text style={styles.text}>{s}</Text>
+            <Text style={styles.swipetext}>{s}</Text>
           </View>
         );
     });

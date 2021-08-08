@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useContext, useEffect } from "react/cjs/react.development";
 import { AuthContext } from "../../navigation/AuthProvider.js";
 import Swiper from "react-native-swiper";
+import apiKeys from "../../config/apiKeys";
 
 export default function GenerateInfo(props) {
   const navigation = useNavigation();
@@ -28,6 +29,28 @@ export default function GenerateInfo(props) {
 
   const addSentence = (text) => {
     setSentences([...sentences, text]);
+  };
+
+  const summarizeText = async () => {
+    console.log("summarizing text");
+    const modelResponse = await fetch(
+      apiKeys.NLP_SERVER_BASE_URL + "/testmodel",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          article: textToSummarize,
+        }),
+      }
+    );
+    const summaryJson = await modelResponse.json();
+    let summary = summaryJson.msg[0] + " ";
+    summary = summary.substring(1, summary.length).split(" . ");
+    console.log(summary);
+    setSentences(summary);
+    setBodyPage(2);
   };
 
   const bodyInput = () => {
@@ -96,19 +119,22 @@ export default function GenerateInfo(props) {
           </View>
         );
 
-      case 3: // loading screen for summarization
-      // DO API STUFF
-      // WAIT TILL IT FINISHES
-      // THEN CHANGE BODYPAGE TO 2
+      case 3:
+        // loading screen for summarization
+
+        summarizeText();
     }
   };
 
   const renderInfographic = () => {
-    return sentences.map((s) => (
-      <View style={styles.slide}>
-        <Text style={styles.text}>{s}</Text>
-      </View>
-    ));
+    return sentences.map((s) => {
+      if (s.length > 0)
+        return (
+          <View style={styles.slide}>
+            <Text style={styles.text}>{s}</Text>
+          </View>
+        );
+    });
   };
 
   if (editing)
@@ -182,7 +208,7 @@ export default function GenerateInfo(props) {
           {renderInfographic()}
         </Swiper>
         <TouchableOpacity>
-          <Text>export</Text>
+          <Text>save</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {

@@ -13,7 +13,6 @@ import {
 import SmallNews from "../../components/SmallNews";
 import BigNews from "../../components/BigNews";
 import dummyData from "../../assets/dummyData";
-import global from "../../styles.js";
 import { HomeContext } from "../../navigation/HomeProvider";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../navigation/AuthProvider";
@@ -30,7 +29,6 @@ export default function EducateScreen(props) {
     setDisplay(true);
   }, []);
 
-  const [refreshing, setRefreshing] = useState(false);
   const [inChild, setInChild] = useState(false);
   const [spotlights, setSpotlights] = useState(dummyData.spotlights);
   const [headlines, setHeadlines] = useState(dummyData.headlines);

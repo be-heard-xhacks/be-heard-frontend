@@ -12,7 +12,8 @@ import {
   SafeAreaView,
   Linking,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  ImageBackground
 } from "react-native";
 
 
@@ -31,8 +32,10 @@ export default function Article(props) {
    <ScrollView style={{backgroundColor:'white'}}>
       <TouchableOpacity
           onPress={() => {
-            setDisplay(!display);
-            console.log(!display);
+            if(!props.inChild) {
+              setDisplay(!display);
+              console.log(!display);
+            }
             navigation.goBack();
           }}
           style={{height: 40, width:40, position: 'absolute', top: 0, left: 10}}
@@ -46,7 +49,8 @@ export default function Article(props) {
       <SafeAreaView style={{ flex: 1, margin: 20, marginTop: 50 }}>
         <Text style={global.pageTitle}>{article.title}</Text>
         <ImageBackground
-          source={{ uri: article.image }}
+          // source={{ uri: article.image }}
+          source={require("../../assets/bg.jpg")}
           resizeMode="cover"
           style={styles.image}
         ></ImageBackground>

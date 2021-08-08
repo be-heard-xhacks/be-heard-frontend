@@ -97,19 +97,15 @@ export default function EducateScreen(props) {
         ></TextGradient>
         <TouchableOpacity>
           <Image
-            source={require("../../assets/bg.jpg")}
+            source={require("../../assets/todayspick.jpeg")}
             style={styles.todayImg}
           ></Image>
           <View style={styles.headline}>
             <Text style={global.headline}>
-              Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit
+              So You Want to Talk About Race - by Ijeoma Oluo
             </Text>
-            <Image
-              source={require("../../assets/source.png")}
-              style={global.srcImg}
-            ></Image>
           </View>
-          <Text style={global.tag}>Label</Text>
+          <Text style={global.tag}>Critical Race Theory</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
